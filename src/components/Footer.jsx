@@ -1,11 +1,37 @@
-import React from 'react'
+import React from "react";
+import { ChevronUpIcon } from "@heroicons/react/outline"; // Importamos el ícono de flecha hacia arriba
 
 const Footer = () => {
-  return (
-    <div>
-      soy el footer
-    </div>
-  )
-}
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Función para hacer scroll hacia arriba
+  };
 
-export default Footer
+  return (
+    <footer className="bg-green-700 text-white p-4">
+      <div className="text-center text-sm">
+        <p>&copy; 2024 Mi Banco. Todos los derechos reservados.</p>
+      </div>
+      <div className="flex justify-center space-x-4 mt-4">
+        <a href="#" className="hover:text-green-300" aria-label="Facebook">
+          <i className="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" className="hover:text-green-300" aria-label="Twitter">
+          <i className="fab fa-twitter"></i>
+        </a>
+        <a href="#" className="hover:text-green-300" aria-label="Instagram">
+          <i className="fab fa-instagram"></i>
+        </a>
+      </div>
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={scrollToTop}
+          className="text-white hover:text-green-300 focus:outline-none"
+        >
+          <ChevronUpIcon className="w-6 h-6" />
+        </button>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
