@@ -1,9 +1,9 @@
 import React from "react";
-import { ChevronUpIcon } from "@heroicons/react/outline"; // Importamos el ícono de flecha hacia arriba
+import { ChevronUpIcon } from "@heroicons/react/outline";
 
 const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Función para hacer scroll hacia arriba
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

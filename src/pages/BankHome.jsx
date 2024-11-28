@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Importa Link para navegación
+import { Link } from "react-router-dom";
 import womanImage from "../assets/woman.jpg";
 import bankImage from "../assets/bank.jpg";
 import moneyImage from "../assets/money.jpg";
@@ -7,13 +7,11 @@ import moneyImage from "../assets/money.jpg";
 const BankHome = () => {
   return (
     <div className="bg-green-50 min-h-screen">
-      {/* Sección de bienvenida */}
       <section className="bg-green-600 text-white p-8 text-center">
         <h1 className="text-4xl font-bold">Bienvenido a Mi Banco</h1>
         <p className="mt-4">Te ofrecemos soluciones financieras a tu medida.</p>
       </section>
 
-      {/* Sección de ventajas */}
       <section className="p-8">
         <h2 className="text-2xl font-bold text-green-700">
           Descubre nuestras ventajas
@@ -44,7 +42,6 @@ const BankHome = () => {
         </div>
       </section>
 
-      {/* Sección de imágenes */}
       <section className="p-8 bg-white">
         <h2 className="text-2xl font-bold text-green-700 text-center">
           Soluciones visuales para ti
@@ -81,7 +78,6 @@ const BankHome = () => {
         </div>
       </section>
 
-      {/* Sección de carrusel */}
       <section className="p-8 bg-green-50">
         <h2 className="text-2xl font-bold text-green-700 text-center">
           Opiniones de nuestros clientes
@@ -109,7 +105,6 @@ const BankHome = () => {
         </div>
       </section>
 
-      {/* Sección de banner */}
       <section className="bg-green-700 text-white p-8 text-center">
         <h2 className="text-3xl font-bold">
           ¡Descubre nuestra nueva app de Trade!

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { HomeIcon, ChartBarIcon } from "@heroicons/react/outline"; // Cambio de BriefcaseIcon a ChartBarIcon
+import { HomeIcon, ChartBarIcon } from "@heroicons/react/outline";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +33,7 @@ const NavBar = () => {
         <ul className="hidden md:flex space-x-6">
           <li>
             <Link to="/" className="hover:text-green-200 flex items-center">
-              <HomeIcon className="w-6 h-6" /> {/* Ícono de Home */}
+              <HomeIcon className="w-6 h-6" />
             </Link>
           </li>
           <li>
@@ -41,12 +41,12 @@ const NavBar = () => {
               to="/trade"
               className="hover:text-green-200 flex items-center"
             >
-              <ChartBarIcon className="w-6 h-6" /> {/* Ícono de gráfico */}
+              <ChartBarIcon className="w-6 h-6" />
             </Link>
           </li>
         </ul>
       </div>
-      {/* Menú móvil */}
+
       {isOpen && (
         <ul className="mt-4 space-y-2 md:hidden">
           <li>
