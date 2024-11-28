@@ -1,17 +1,15 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
 
-const Layout = () => {
+const LayoutTrade = () => {
     return (
         <>
-            <NavBar />
             <Outlet />
-            <Footer />
+            <NavBar />      
         </>
     )
 }
 
-export default Layout
+export default LayoutTrade
  

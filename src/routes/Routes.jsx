@@ -1,22 +1,37 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../layout/Layout';
+import LayoutBank from '../layout/LayoutBank';
+import LayoutTrade from '../layout/LayoutTrade';
 import BankHome from '../pages/BankHome';
 import TradeHome from '../pages/TradeHome';
 
 export const routes = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <LayoutBank />,
     children: [
       {
-       index: true,
+        index: true,
         element: <BankHome />,
       },
       {
-        path: '/trade',
+        path: 'aboutus', 
+        element: <div>About</div>,
+      },
+    ],
+  },
+  {
+    path: '/trade',
+    element: <LayoutTrade />,
+    children: [
+      {
+        index: true,
         element: <TradeHome />,
       },
-    ]
+      {
+        path: 'news',
+        element: <div>news</div>,
+      },
+    ],
   },
 ]);

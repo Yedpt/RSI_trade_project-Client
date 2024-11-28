@@ -3,7 +3,7 @@ import React from 'react'
 const NavBar = () => {
   return (
     <div>
-       soy el navBar
+       soy el navBar ola
     </div>
   )
 }
