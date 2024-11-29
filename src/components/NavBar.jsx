@@ -1,9 +1,25 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { HomeIcon, ChartBarIcon } from "@heroicons/react/outline";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { HomeIcon, ChartBarIcon, LogoutIcon } from "@heroicons/react/outline";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("authToken");
+    setUser(null);
+    navigate("/");
+  };
 
   return (
     <nav className="bg-green-600 text-white p-4">
@@ -30,21 +46,39 @@ const NavBar = () => {
             </svg>
           </button>
         </div>
-        <ul className="hidden md:flex space-x-6">
-          <li>
-            <Link to="/" className="hover:text-green-200 flex items-center">
-              <HomeIcon className="w-6 h-6" />
-            </Link>
-          </li>
-          <li>
+        <div className="hidden md:flex items-center space-x-6">
+          <Link to="/" className="hover:text-green-200 flex items-center">
+            <HomeIcon className="w-6 h-6" />
+          </Link>
+
+          {user ? (
+            <>
+              <Link
+                to="/trade"
+                className="hover:text-green-200 flex items-center"
+              >
+                <ChartBarIcon className="w-6 h-6" />
+              </Link>
+              <div className="flex items-center">
+                <span className="mr-4">¡Hola, {user.name}!</span>
+                <button
+                  onClick={handleLogout}
+                  className="hover:bg-green-500 p-2 rounded"
+                  title="Cerrar Sesión"
+                >
+                  <LogoutIcon className="w-6 h-6" />
+                </button>
+              </div>
+            </>
+          ) : (
             <Link
-              to="/trade"
-              className="hover:text-green-200 flex items-center"
+              to="/login"
+              className="bg-green-500 hover:bg-green-400 px-4 py-2 rounded"
             >
-              <ChartBarIcon className="w-6 h-6" />
+              Iniciar Sesión
             </Link>
-          </li>
-        </ul>
+          )}
+        </div>
       </div>
 
       {isOpen && (
@@ -57,14 +91,33 @@ const NavBar = () => {
               <HomeIcon className="w-6 h-6 mr-2" /> Inicio
             </Link>
           </li>
-          <li>
-            <Link
-              to="/trade"
-              className="block hover:text-green-200 flex items-center"
-            >
-              <ChartBarIcon className="w-6 h-6 mr-2" /> Inversión
-            </Link>
-          </li>
+          {user && (
+            <li>
+              <Link
+                to="/trade"
+                className="block hover:text-green-200 flex items-center"
+              >
+                <ChartBarIcon className="w-6 h-6 mr-2" /> Inversión
+              </Link>
+            </li>
+          )}
+          {user ? (
+            <li className="flex items-center">
+              <span className="mr-4">¡Hola, {user.name}!</span>
+              <button
+                onClick={handleLogout}
+                className="hover:text-green-200 flex items-center"
+              >
+                <LogoutIcon className="w-6 h-6 mr-2" /> Cerrar Sesión
+              </button>
+            </li>
+          ) : (
+            <li>
+              <Link to="/login" className="block hover:text-green-200">
+                Iniciar Sesión
+              </Link>
+            </li>
+          )}
         </ul>
       )}
     </nav>
