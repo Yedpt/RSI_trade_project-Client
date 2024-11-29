@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import womanImage from "../assets/woman.jpg";
 import bankImage from "../assets/bank.jpg";
 import moneyImage from "../assets/money.jpg";
+import CookieConsent from "../components/CookieConsent";
+import VoiceAssistButton from "../components/VoiceAssistButton";
 
 const BankHome = () => {
   return (
@@ -106,7 +108,8 @@ const BankHome = () => {
       </section>
 
       <section className="bg-green-700 text-white p-8 text-center">
-        <h2 className="text-3xl font-bold">
+        <h2 className="text-3xl font-bold flex items-center justify-center gap-4">
+          <VoiceAssistButton text="¡Descubre nuestra nueva app de Trade! Gestiona tus inversiones y transacciones desde la palma de tu mano." />
           ¡Descubre nuestra nueva app de Trade!
         </h2>
         <p className="mt-4">
@@ -119,6 +122,7 @@ const BankHome = () => {
           Explorar la App
         </Link>
       </section>
+      <CookieConsent />
     </div>
   );
 };
