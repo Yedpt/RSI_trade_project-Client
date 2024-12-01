@@ -34,6 +34,10 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/register",
+    element: <Login initialView="register" />, // Ruta para el registro directo
+  },
+  {
     path: "/trade",
     element: <LayoutTrade />,
     children: [
