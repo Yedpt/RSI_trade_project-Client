@@ -119,7 +119,7 @@ const BankHome = () => {
           to="/trade"
           className="mt-6 bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded inline-block"
         >
-          Explorar la App
+          RSI Trading
         </Link>
       </section>
       <CookieConsent />
