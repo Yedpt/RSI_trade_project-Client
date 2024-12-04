@@ -1,19 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import womanImage from "../assets/woman.jpg";
 import bankImage from "../assets/bank.jpg";
 import moneyImage from "../assets/money.jpg";
 import CookieConsent from "../components/CookieConsent";
 import VoiceAssistButton from "../components/VoiceAssistButton";
+import SplashScreen from "../components/SplashScreen";
 
 const BankHome = () => {
+  const [isSplashVisible, setIsSplashVisible] = useState(false);
+  const navigate = useNavigate();
+
+  const handleShowSplash = () => {
+    setIsSplashVisible(true);
+
+    setTimeout(() => {
+      setIsSplashVisible(false);
+      navigate("/trade");
+    }, 3000);
+  };
+
   return (
     <div className="bg-green-50 min-h-screen">
+      {isSplashVisible && (
+        <SplashScreen onClose={() => setIsSplashVisible(false)} />
+      )}
+
+      {/* Sección de Bienvenida */}
       <section className="bg-green-600 text-white p-8 text-center">
         <h1 className="text-4xl font-bold">Bienvenido a Mi Banco</h1>
         <p className="mt-4">Te ofrecemos soluciones financieras a tu medida.</p>
       </section>
 
+      {/* Sección de Ventajas */}
       <section className="p-8">
         <h2 className="text-2xl font-bold text-green-700">
           Descubre nuestras ventajas
@@ -44,6 +63,7 @@ const BankHome = () => {
         </div>
       </section>
 
+      {/* Sección de Soluciones Visuales */}
       <section className="p-8 bg-white">
         <h2 className="text-2xl font-bold text-green-700 text-center">
           Soluciones visuales para ti
@@ -80,6 +100,7 @@ const BankHome = () => {
         </div>
       </section>
 
+      {/* Sección de Opiniones */}
       <section className="p-8 bg-green-50">
         <h2 className="text-2xl font-bold text-green-700 text-center">
           Opiniones de nuestros clientes
@@ -102,12 +123,13 @@ const BankHome = () => {
             <p className="text-green-700">
               "Invertir en proyectos verdes nunca fue tan sencillo y seguro."
             </p>
-            <p className="mt-4 text-sm font-bold">- Carlos López</p>
+            <p className="mt-4 text-sm font-bold">-Vito Mena</p>
           </div>
         </div>
       </section>
 
-      <section className="bg-green-700 text-white p-8 text-center">
+      {/* Sección de Trade */}
+      <section className="p-8 bg-green-700 text-white text-center">
         <h2 className="text-3xl font-bold flex items-center justify-center gap-4">
           <VoiceAssistButton text="¡Descubre nuestra nueva app de Trade! Gestiona tus inversiones y transacciones desde la palma de tu mano." />
           ¡Descubre nuestra nueva app de Trade!
@@ -115,13 +137,14 @@ const BankHome = () => {
         <p className="mt-4">
           Gestiona tus inversiones y transacciones desde la palma de tu mano.
         </p>
-        <Link
-          to="/trade"
-          className="mt-6 bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded inline-block"
+        <button
+          onClick={handleShowSplash}
+          className="mt-6 bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded"
         >
           RSI Trading
-        </Link>
+        </button>
       </section>
+
       <CookieConsent />
     </div>
   );

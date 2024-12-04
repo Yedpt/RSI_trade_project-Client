@@ -8,12 +8,14 @@ import {
 } from "@heroicons/react/outline";
 import Avatar from "@mui/material/Avatar";
 import { teal } from "@mui/material/colors";
+import SplashScreen from "../components/SplashScreen";
 
 import videoNavbar from "../assets/video/video-navbar.mp4";
 
 const NavBar = () => {
   const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSplashVisible, setIsSplashVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,8 +38,19 @@ const NavBar = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const handleShowSplashAndNavigate = () => {
+    setIsSplashVisible(true);
+    setTimeout(() => {
+      setIsSplashVisible(false);
+      navigate("/trade");
+    }, 3000);
+  };
+
   return (
     <nav className="relative w-full">
+      {isSplashVisible && (
+        <SplashScreen onClose={() => setIsSplashVisible(false)} />
+      )}
       <div
         className={`${
           user ? "bg-transparent" : "bg-green-600"
@@ -84,15 +97,14 @@ const NavBar = () => {
 
           {user ? (
             <>
-              <Link
-                to="/trade"
+              <button
+                onClick={handleShowSplashAndNavigate}
                 className="hover:text-green-200 flex items-center"
               >
                 <ChartBarIcon className="w-6 h-6" />
-              </Link>
+              </button>
               <div className="flex items-center space-x-4">
                 <span>¡Hola, {user.name}!</span>
-                {/* Avatar del usuario */}
                 <Avatar sx={{ bgcolor: teal[500] }}>
                   {user.name ? user.name[0] : "U"}
                 </Avatar>
