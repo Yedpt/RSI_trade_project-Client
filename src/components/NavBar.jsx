@@ -22,7 +22,7 @@ const NavBar = () => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
-      console.log("Usuario almacenado:", parsedUser);
+    
       setUser(parsedUser);
     }
   }, []);
