@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../services/authService";
+import { signUpNewUser } from "../services/authService";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 
-const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+const SignUp = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -13,20 +18,30 @@ const Login = () => {
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleLogin = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     setError("");
 
+    if (formData.password !== formData.confirmPassword) {
+      setError("Las contraseñas no coinciden.");
+      return;
+    }
+
+    const signUpData = {
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+    };
+
     try {
-      const result = await loginUser(formData);
+      const result = await signUpNewUser(signUpData);
       if (result.success) {
-        localStorage.setItem("user", JSON.stringify(result.userData.user));
         navigate("/");
       } else {
         setError(result.message);
       }
     } catch (err) {
-      setError("Ocurrió un error al iniciar sesión.");
+      setError("Ocurrió un error durante el registro.");
     }
   };
 
@@ -36,7 +51,7 @@ const Login = () => {
     <div className="min-h-screen bg-green-50 flex flex-col items-center justify-center relative">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <h2 className="text-2xl font-bold text-green-700 text-center mb-6">
-          Iniciar Sesión
+          Registrarse
         </h2>
 
         {error && (
@@ -45,7 +60,25 @@ const Login = () => {
           </div>
         )}
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSignUp}>
+          <div className="mb-4">
+            <label
+              htmlFor="name"
+              className="block text-green-700 font-medium mb-2"
+            >
+              Nombre
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
+              required
+            />
+          </div>
+
           <div className="mb-4">
             <label
               htmlFor="email"
@@ -79,7 +112,26 @@ const Login = () => {
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
               required
-              autoComplete="current-password"
+              autoComplete="new-password"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="confirmPassword"
+              className="block text-green-700 font-medium mb-2"
+            >
+              Confirmar Contraseña
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
+              required
+              autoComplete="new-password"
             />
           </div>
 
@@ -87,16 +139,16 @@ const Login = () => {
             type="submit"
             className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
           >
-            Iniciar Sesión
+            Registrarse
           </button>
         </form>
 
         <div className="text-center mt-4">
           <button
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/login")}
             className="text-green-600 hover:underline"
           >
-            ¿No tienes cuenta? Regístrate
+            ¿Ya tienes cuenta? Inicia sesión
           </button>
         </div>
       </div>
@@ -111,4 +163,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
