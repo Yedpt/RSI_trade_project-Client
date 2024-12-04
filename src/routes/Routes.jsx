@@ -16,7 +16,10 @@ export const routes = createBrowserRouter([
       {
         path: '/trade',
         element: <TradeHome />,
+        
+        
       },
+
     ]
   },
 ]);

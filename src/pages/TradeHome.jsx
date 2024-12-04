@@ -1,9 +1,11 @@
-const HomeTrading = () => {
+import React from "react";
+
+const TradeHome = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-      <h1 className="text-2xl font-bold">Bienvenido a Home Trading</h1>
+      <h1 className="text-2xl font-bold">¡Bienvenido a TradeHome!</h1>
     </div>
   );
 };
 
-export default HomeTrading;
+export default TradeHome;
