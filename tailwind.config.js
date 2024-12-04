@@ -1,9 +1,29 @@
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"], // Archivos donde se usará Tailwind
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      backgroundImage: {
-        'trading-bg': "url('/src/assets/onboardingImages/BG_cajaRural.svg')", // Clase personalizada para el fondo
+      colors: {
+        green: {
+          50: "#f3fdf4",
+          100: "#e2f9e3",
+          600: "#047857",
+          700: "#065f46",
+        },
+      },
+      animation: {
+        pulse: "pulse 2s ease-in-out infinite",
+        scale: "scale 2s ease-in-out infinite",
+      },
+      keyframes: {
+        pulse: {
+          "0%, 100%": { transform: "scale(1)", opacity: "1" },
+          "50%": { transform: "scale(1.5)", opacity: "0.5" },
+        },
+        scale: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(0)" },
+        },
       },
     },
   },
