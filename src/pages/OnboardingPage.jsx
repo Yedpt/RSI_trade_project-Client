@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
+// Importar imágenes y video directamente
 import video from "../assets/onboardingImages/video.mp4";
 import onboardingUno from "../assets/onboardingImages/onboardingUno.svg";
 import onboardingDos from "../assets/onboardingImages/onboardingDos.svg";
@@ -10,7 +10,7 @@ const OnboardingPage = () => {
   const [currentCard, setCurrentCard] = useState(0);
   const navigate = useNavigate();
 
-  
+  // Data de las tarjetas (incluyendo la nueva)
   const cards = [
     {
       title: "Aprenda a invertir con simulaciones",
@@ -30,17 +30,24 @@ const OnboardingPage = () => {
       image: onboardingDos,
       isVideo: false,
     },
+    {
+      title: "¡Participe de los retos!",
+      description: "Crea su perfil y participe de los retos.",
+      image: null,
+      isAvatar: true,
+    },
   ];
 
-  
+  // Función para avanzar a la siguiente tarjeta o redirigir
   const handleNext = () => {
     if (currentCard < cards.length - 1) {
       setCurrentCard(currentCard + 1);
     } else {
-      navigate("/home-trading"); 
+      navigate("/home-trading"); // Redirige a Home Trading cuando termine
     }
   };
 
+  // Función para retroceder a la tarjeta anterior
   const handleBack = () => {
     if (currentCard > 0) {
       setCurrentCard(currentCard - 1);
@@ -49,7 +56,7 @@ const OnboardingPage = () => {
 
   // Función para omitir todas las tarjetas
   const handleSkip = () => {
-    navigate("/home-trading"); 
+    navigate("/home-trading"); // Redirige directamente a Home Trading
   };
 
   return (
@@ -61,6 +68,13 @@ const OnboardingPage = () => {
             <source src={cards[currentCard].image} type="video/mp4" />
             Tu navegador no soporta videos.
           </video>
+        ) : cards[currentCard].isAvatar ? (
+          <div className="flex flex-col items-center justify-center h-full">
+            <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mb-4">
+              <span className="text-white text-3xl">👤</span>
+            </div>
+            <p className="text-gray-300 text-center">Crea su nickname o avatar</p>
+          </div>
         ) : (
           <img
             src={cards[currentCard].image}
@@ -87,7 +101,7 @@ const OnboardingPage = () => {
             className="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-600"
             onClick={handleNext}
           >
-            {currentCard < cards.length - 1 ? "Sigueinte" : "Empezar"}
+            {currentCard < cards.length - 1 ? "Próximo" : "Empezar"}
           </button>
 
           {/* Botón "Saltar" */}
