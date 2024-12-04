@@ -137,7 +137,7 @@ const Login = ({ initialView = "login" }) => {
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
               required
-              autocomplete="new-password"
+              autoComplete="new-password"
             />
           </div>
 
@@ -157,7 +157,7 @@ const Login = ({ initialView = "login" }) => {
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
                 required={!isLoginModal}
-                autocomplete="new-password"
+                autoComplete="new-password"
               />
             </div>
           )}

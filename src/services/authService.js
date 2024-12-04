@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const PORT = 8000;
+const PORT = 3000;
 const URL = `http://localhost:${PORT}/api/users`;
 
 // SERVICIO SIGNUP
