@@ -7,10 +7,9 @@ import OnboardingPage from '../pages/OnboardingPage'
 const LayoutBank = () => {
     return (
         <>
-            <NavBar />
-            <OnboardingPage />
+        
             <Outlet />
-            <Footer />
+            <NavBar />
         </>
     )
 }

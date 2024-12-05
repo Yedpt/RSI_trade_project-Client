@@ -5,6 +5,8 @@ import LayoutTrade from "../layout/LayoutTrade";
 import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
+import OnboardingPage from "../pages/OnboardingPage";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -23,19 +25,36 @@ export const routes = createBrowserRouter([
         index: true,
         element: <BankHome />,
       },
-      {
-        path: "aboutus",
-        element: <div>About</div>,
-      },
     ],
+
   },
   {
     path: "/login",
     element: <Login />,
   },
   {
-    path: "/register",
-    element: <Login initialView="register" />, // Ruta para el registro directo
+    path: "/signup",
+    element: <SignUp/>, // Ruta para el registro directo
+  },
+  {
+    path: "/onboarding",
+    element: (
+        < OnboardingPage/>
+    ),
+    children: [
+      {
+        index: true,
+        element: <TradeHome />,
+      },
+      {
+        path: "news",
+        element: (
+          <ProtectedRoute>
+            <div>news</div>
+          </ProtectedRoute>
+        ),
+      },
+    ],
   },
   {
     path: "/trade",
