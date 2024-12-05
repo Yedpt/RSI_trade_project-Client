@@ -32,7 +32,7 @@ export const routes = createBrowserRouter([
   },
   {
     path: "/signup",
-    element: <SignUp/>, // Ruta para el registro directo
+    element: <SignUp />, // Ruta para el registro directo
   },
   {
     path: "/trade",
