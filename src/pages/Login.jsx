@@ -10,37 +10,7 @@ const Login = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    if (formData.password !== formData.confirmPassword) {
-      setError("Las contraseñas no coinciden.");
-      return;
-    }
-
-    const signUpData = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-    };
-
-    try {
-      const result = await signUpNewUser(signUpData);
-      if (result.success) {
-        navigate("/homebank");
-      } else {
-        setError(result.message);
-      }
-    } catch (err) {
-      setError("Ocurrió un error durante el registro.");
-    }
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
   const handleLogin = async (e) => {
@@ -109,30 +79,9 @@ const Login = () => {
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
               required
-              autoComplete="new-password"
+              autoComplete="current-password"
             />
           </div>
-
-          {!isLoginModal && (
-            <div className="mb-4">
-              <label
-                htmlFor="confirmPassword"
-                className="block text-green-700 font-medium mb-2"
-              >
-                Confirmar Contraseña
-              </label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
-                required={!isLoginModal}
-                autoComplete="new-password"
-              />
-            </div>
-          )}
 
           <button
             type="submit"
