@@ -40,7 +40,7 @@ const Login = ({ initialView = "login" }) => {
     try {
       const result = await signUpNewUser(signUpData);
       if (result.success) {
-        navigate("/");
+        navigate("/homebank");
       } else {
         setError(result.message);
       }
@@ -59,7 +59,7 @@ const Login = ({ initialView = "login" }) => {
       const result = await loginUser(loginData);
       if (result.success) {
         localStorage.setItem("user", JSON.stringify(result.userData.user));
-        navigate("/");
+        navigate("/homebank");
       } else {
         setError(result.message);
       }
@@ -137,7 +137,7 @@ const Login = ({ initialView = "login" }) => {
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
               required
-              autocomplete="new-password"
+              autoComplete="new-password"
             />
           </div>
 
@@ -157,7 +157,7 @@ const Login = ({ initialView = "login" }) => {
                 onChange={handleChange}
                 className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
                 required={!isLoginModal}
-                autocomplete="new-password"
+                autoComplete="new-password"
               />
             </div>
           )}

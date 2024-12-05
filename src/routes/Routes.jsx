@@ -1,7 +1,5 @@
-import React from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import LayoutBank from "../layout/LayoutBank";
-import LayoutTrade from "../layout/LayoutTrade";
 import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
@@ -11,52 +9,37 @@ const ProtectedRoute = ({ children }) => {
   const user = localStorage.getItem("user");
   const token = localStorage.getItem("authToken");
 
-  return user && token ? children : <Navigate to="/login" replace />;
+  return user && token ? children : <Navigate to="/" replace />;
 };
 
 export const routes = createBrowserRouter([
   {
     path: "/",
+    element: <Login />,
+  },
+  {
+    path: "homebank",
     element: <LayoutBank />,
     children: [
       {
         index: true,
-        element: <BankHome />,
+        element: (
+          <ProtectedRoute>
+            <BankHome />
+          </ProtectedRoute>
+        
+      ), 
       },
       {
-        path: "aboutus",
-        element: <div>About</div>,
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/register",
-    element: <Login initialView="register" />, // Ruta para el registro directo
-  },
-  {
-    path: "/trade",
-    element: <LayoutTrade />,
-    children: [
-      {
-        index: true,
+        path: "trade",
         element: (
           <ProtectedRoute>
             <TradeHome />
           </ProtectedRoute>
-        ),
-      },
-      {
-        path: "news",
-        element: (
-          <ProtectedRoute>
-            <div>news</div>
-          </ProtectedRoute>
-        ),
+        
+      ), 
       },
     ],
   },
-]);
+    ],
+);
