@@ -21,7 +21,7 @@ const Login = () => {
       const result = await loginUser(formData);
       if (result.success) {
         localStorage.setItem("user", JSON.stringify(result.userData.user));
-        navigate("/");
+        navigate("/homebank");
       } else {
         setError(result.message);
       }

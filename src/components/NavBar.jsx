@@ -37,7 +37,7 @@ const NavBar = () => {
     setIsSplashVisible(true);
     setTimeout(() => {
       setIsSplashVisible(false);
-      navigate("/trade");
+      navigate("/homebank/trade");
     }, 3000);
   };
 
@@ -79,14 +79,12 @@ const NavBar = () => {
             isOpen ? "block" : "hidden"
           } md:flex flex-col md:flex-row items-center space-y-4 md:space-x-6 w-full md:w-auto md:space-y-0`}
         >
-          <div className="flex flex-row items-center space-x-6">
-            <div className="flex flex-col items-center">
-              <Link to="/" className="text-gray-500 hover:text-green-500">
-                <HomeIcon className="w-6 h-6" />
-                <span className="text-xs text-center">Home</span>
-              </Link>
-            </div>
-            <div className="flex flex-col items-center">
+          <Link to="/homebank" className="hover:text-green-200 flex items-center">
+            <HomeIcon className="w-6 h-6" />
+          </Link>
+
+          {user ? (
+            <>
               <button
                 onClick={handleShowSplashAndNavigate}
                 className="text-gray-500 hover:text-green-500"
