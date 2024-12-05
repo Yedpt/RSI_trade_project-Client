@@ -6,9 +6,9 @@ import Footer from '../components/Footer'
 const LayoutBank = () => {
     return (
         <>
-            <NavBar />
+        
             <Outlet />
-            <Footer />
+            <NavBar />
         </>
     )
 }

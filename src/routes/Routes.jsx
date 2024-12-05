@@ -3,6 +3,7 @@ import LayoutBank from "../layout/LayoutBank";
 import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
+import SignUp from "../pages/SignUp";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {

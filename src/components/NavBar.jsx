@@ -34,7 +34,7 @@ const NavBar = () => {
     navigate("/");
   };
 
-  const handleOpenRegisterModal = () => navigate("/register");
+  const handleOpenRegisterModal = () => navigate("/signup");
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
