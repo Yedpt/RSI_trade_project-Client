@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   HomeIcon,
   ChartBarIcon,
@@ -13,25 +13,28 @@ const NavBar = () => {
   const [isSplashVisible, setIsSplashVisible] = useState(false);
   const [activePage, setActivePage] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const colors = {
     activeGreen: "#4AFF2E",
     inactiveGray: "#696F74",
   };
 
+  useEffect(() => {
+    const currentPath = location.pathname.split("/").pop();
+    setActivePage(currentPath === "homebank" ? "homebank" : currentPath);
+  }, [location]);
+
   const handleNavigation = (targetPage) => {
     if (targetPage === "trade") {
       setIsSplashVisible(true);
       setTimeout(() => {
         setIsSplashVisible(false);
-        setActivePage(targetPage);
         navigate(`/homebank/${targetPage}`);
       }, 3000);
     } else if (targetPage === "homebank") {
-      setActivePage(targetPage);
       navigate("/homebank");
     } else {
-      setActivePage(targetPage);
       navigate(`/homebank/${targetPage}`);
     }
   };
@@ -40,7 +43,14 @@ const NavBar = () => {
     <button
       className="flex flex-col items-center p-2 md:text-lg"
       style={{
-        color: activePage === page ? colors.activeGreen : colors.inactiveGray,
+        color:
+          page === "homebank"
+            ? activePage === "homebank"
+              ? colors.activeGreen
+              : colors.inactiveGray
+            : activePage === page
+            ? colors.activeGreen
+            : colors.inactiveGray,
       }}
       onClick={() => handleNavigation(page)}
     >
