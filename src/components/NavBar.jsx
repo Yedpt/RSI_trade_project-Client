@@ -16,7 +16,7 @@ const NavBar = () => {
   const location = useLocation();
 
   const colors = {
-    activeGreen: "#4AFF2E",
+    activeGreen: "#8ee281",
     inactiveGray: "#696F74",
   };
 
@@ -64,7 +64,7 @@ const NavBar = () => {
       {isSplashVisible && (
         <SplashScreen onClose={() => setIsSplashVisible(false)} />
       )}
-      <div className="flex justify-around items-center py-2 bg-black shadow-md md:w-full">
+      <div className="flex justify-around items-center py-2 bg-[#16161E] shadow-md md:w-full rounded-t-15p">
         <NavButton page="portfolio" icon={DocumentIcon} label="Portfolio" />
         <NavButton page="trade" icon={ChartBarIcon} label="Trade" />
         <NavButton page="homebank" icon={HomeIcon} label="Home" />

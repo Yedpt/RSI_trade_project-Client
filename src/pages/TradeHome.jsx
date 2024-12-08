@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import Footer from "../components/Footer";
 
 const TradeHome = () => {
   return (
     <div>
-      Soy el home del trade app
+      <Footer />
+      <h1>Soy el home del trade app</h1>
     </div>
-  )
-}
+  );
+};
 
-export default TradeHome
+export default TradeHome;
