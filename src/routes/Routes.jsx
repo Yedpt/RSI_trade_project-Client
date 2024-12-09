@@ -4,7 +4,7 @@ import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
-
+import News from "../pages/News";  // Add this import
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const user = localStorage.getItem("user");
@@ -28,8 +28,7 @@ export const routes = createBrowserRouter([
           <ProtectedRoute>
             <BankHome />
           </ProtectedRoute>
-        
-      ), 
+        ),
       },
       {
         path: "trade",
@@ -37,10 +36,16 @@ export const routes = createBrowserRouter([
           <ProtectedRoute>
             <TradeHome />
           </ProtectedRoute>
-        
-      ), 
+        ),
+      },
+      {
+        path: "news",
+        element: (
+          <ProtectedRoute>
+            <News />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
-    ],
-);
+])
