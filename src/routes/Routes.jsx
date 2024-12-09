@@ -19,6 +19,10 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/news", // Nueva ruta independiente
+    element: <News />,
+  },
+  {
     path: "homebank",
     element: <LayoutBank />,
     children: [
@@ -35,14 +39,6 @@ export const routes = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <TradeHome />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "news",
-        element: (
-          <ProtectedRoute>
-            <News />
           </ProtectedRoute>
         ),
       },
