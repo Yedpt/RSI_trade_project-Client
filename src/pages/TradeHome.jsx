@@ -159,5 +159,7 @@ const TrameHome = () => {
     </div>
   );
 };
+  );
+};
 
 export default TrameHome;

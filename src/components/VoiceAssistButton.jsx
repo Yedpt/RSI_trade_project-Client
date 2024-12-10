@@ -1,4 +1,3 @@
-// VoiceAssistButton.jsx
 import React from "react";
 import { FaVolumeUp } from "react-icons/fa";
 

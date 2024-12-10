@@ -1,35 +1,62 @@
-import React from "react";
-import { ChevronUpIcon } from "@heroicons/react/outline";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { LogoutIcon } from "@heroicons/react/outline";
+import LogoImage from "../assets/logo-splashScreen.webp";
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser.user || parsedUser);
+      } catch (error) {
+        console.error("Error parsing user data:", error);
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("authToken");
+    setUser(null);
+    navigate("/");
   };
 
   return (
-    <footer className="bg-green-700 text-white p-4">
-      <div className="text-center text-sm">
-        <p>&copy; 2024 Mi Banco. Todos los derechos reservados.</p>
+    <footer className="fixed top-0 w-full flex items-center justify-between p-4 bg-gray-800 z-50">
+      <div className="flex items-center">
+        <img src={LogoImage} alt="logo" className="w-10 h-10 mr-4" />
+        {user ? (
+          <span className="text-zinc-400">¡Hola, {user.name}!</span>
+        ) : (
+          <div>
+            <button
+              onClick={() => navigate("/register")}
+              className="text-green-100 hover:underline"
+            >
+              Hazte cliente
+            </button>
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-green-500 hover:bg-green-400 px-4 py-2 rounded ml-2"
+            >
+              Iniciar Sesión
+            </button>
+          </div>
+        )}
       </div>
-      <div className="flex justify-center space-x-4 mt-4">
-        <a href="#" className="hover:text-green-300" aria-label="Facebook">
-          <i className="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" className="hover:text-green-300" aria-label="Twitter">
-          <i className="fab fa-twitter"></i>
-        </a>
-        <a href="#" className="hover:text-green-300" aria-label="Instagram">
-          <i className="fab fa-instagram"></i>
-        </a>
-      </div>
-      <div className="flex justify-center mt-4">
-        <button
-          onClick={scrollToTop}
-          className="text-white hover:text-green-300 focus:outline-none"
-        >
-          <ChevronUpIcon className="w-6 h-6" />
-        </button>
-      </div>
+      {user && (
+        <div className="flex items-center">
+          <LogoutIcon
+            className="w-6 h-6 text-[#E1E1E1] cursor-pointer flex items-center space-x-1"
+            onClick={handleLogout}
+          />
+        </div>
+      )}
     </footer>
   );
 };
