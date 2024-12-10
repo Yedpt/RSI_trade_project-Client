@@ -105,9 +105,9 @@ const NavBar = () => {
               </button>
               <div className="flex items-center space-x-4">
                 <span>¡Hola, {user.name}!</span>
-                <Avatar sx={{ bgcolor: teal[500] }}>
+                <Link to="profile"><Avatar sx={{ bgcolor: teal[500] }}>
                   {user.name ? user.name[0] : "U"}
-                </Avatar>
+                </Avatar></Link>
                 <button
                   onClick={handleLogout}
                   className="hover:bg-green-500 p-2 rounded"

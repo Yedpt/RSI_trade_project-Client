@@ -4,6 +4,7 @@ import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import Profile from "../pages/Profile";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -36,6 +37,15 @@ export const routes = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <TradeHome />
+          </ProtectedRoute>
+        
+      ), 
+      },
+      {
+        path: "profile",
+        element: (
+          <ProtectedRoute>
+            <Profile />
           </ProtectedRoute>
         
       ), 
