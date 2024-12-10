@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   HomeIcon,
@@ -11,26 +11,16 @@ import { teal } from "@mui/material/colors";
 import SplashScreen from "../components/SplashScreen";
 
 import videoNavbar from "../assets/video/video-navbar.mp4";
+import { useAuth } from "../context/AuthContext"; // Importar el contexto
 
 const NavBar = () => {
-  const [user, setUser] = useState(null);
+  const { isAuthenticated, logout, userId, loading } = useAuth(); // Usar el contexto
   const [isOpen, setIsOpen] = useState(false);
   const [isSplashVisible, setIsSplashVisible] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-    
-      setUser(parsedUser);
-    }
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("authToken");
-    setUser(null);
+    logout();
     navigate("/");
   };
 
@@ -53,10 +43,10 @@ const NavBar = () => {
       )}
       <div
         className={`${
-          user ? "bg-transparent" : "bg-green-600"
+          isAuthenticated ? "bg-transparent" : "bg-green-600"
         } text-white flex justify-between items-center p-4`}
       >
-        {user ? (
+        {isAuthenticated ? (
           <div className="absolute top-0 left-0 w-full h-full z-[-1]">
             <video autoPlay loop muted className="w-full h-full object-cover">
               <source src={videoNavbar} type="video/mp4" />
@@ -95,7 +85,7 @@ const NavBar = () => {
             <HomeIcon className="w-6 h-6" />
           </Link>
 
-          {user ? (
+          {isAuthenticated ? (
             <>
               <button
                 onClick={handleShowSplashAndNavigate}
@@ -104,10 +94,14 @@ const NavBar = () => {
                 <ChartBarIcon className="w-6 h-6" />
               </button>
               <div className="flex items-center space-x-4">
-                <span>¡Hola, {user.name}!</span>
-                <Avatar sx={{ bgcolor: teal[500] }}>
-                  {user.name ? user.name[0] : "U"}
-                </Avatar>
+                {!loading && userId && (
+                  <>
+                    <span>¡Hola, Usuario {userId}!</span>
+                    <Avatar sx={{ bgcolor: teal[500] }}>
+                      {userId ? userId[0] : "U"}
+                    </Avatar>
+                  </>
+                )}
                 <button
                   onClick={handleLogout}
                   className="hover:bg-green-500 p-2 rounded"

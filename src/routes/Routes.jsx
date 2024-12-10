@@ -4,14 +4,9 @@ import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import { PrivateRoutes } from "../layout/PrivateRoutes";
 
-// Protected Route Component
-const ProtectedRoute = ({ children }) => {
-  const user = localStorage.getItem("user");
-  const token = localStorage.getItem("authToken");
 
-  return user && token ? children : <Navigate to="/" replace />;
-};
 
 export const routes = createBrowserRouter([
   {
@@ -25,18 +20,18 @@ export const routes = createBrowserRouter([
       {
         index: true,
         element: (
-          <ProtectedRoute>
+          <PrivateRoutes>
             <BankHome />
-          </ProtectedRoute>
+          </PrivateRoutes>
         
       ), 
       },
       {
         path: "trade",
         element: (
-          <ProtectedRoute>
+          <PrivateRoutes>
             <TradeHome />
-          </ProtectedRoute>
+          </PrivateRoutes>
         
       ), 
       },

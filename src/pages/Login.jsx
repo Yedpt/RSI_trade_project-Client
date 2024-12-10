@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // Asegúrate de ajustar la ruta al AuthContext
 import { loginUser } from "../services/authService";
 import { ChevronUpIcon } from "@heroicons/react/solid";
 
@@ -7,6 +8,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth(); // Usamos el contexto para el login
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,10 +20,11 @@ const Login = () => {
     setError("");
 
     try {
-      const result = await loginUser(formData);
-      if (result.success) {
-        localStorage.setItem("user", JSON.stringify(result.userData.user));
-        navigate("/homebank");
+      const result = await loginUser(formData); // Llamada al servicio de login
+      if (result.success && result.token) {
+        console.log("Login successful, navigating to /homebank");
+        await login(result.token); // Llamamos a la función `login` del contexto con el token
+        navigate("/homebank"); // Redirigimos al usuario después de iniciar sesión
       } else {
         setError(result.message);
       }
