@@ -5,6 +5,7 @@ import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import OnboardingPage from "../pages/OnboardingPage";
+import RankingPage from "../pages/RankingPage";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
