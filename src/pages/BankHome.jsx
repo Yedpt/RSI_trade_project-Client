@@ -1,6 +1,7 @@
 import React from "react";
 import FinanceApp from "../components/FinanceApp";
 import PieChart from "../components/PieChart";
+import FinanceCard from "../components/FinanceCard";
 
 const BankHome = () => {
   return (
@@ -10,6 +11,19 @@ const BankHome = () => {
       </h1>
       <PieChart />
       <FinanceApp />
+      <div className="flex flex-col gap-y-4 mt-8 w-full max-w-[400px] mx-auto mb-[80px]">
+        <FinanceCard title="Spotify" amount="-€12.99" subtitle="Pago mensual" />
+        <FinanceCard
+          title="Transferencia"
+          amount="€300"
+          subtitle="Ingreso de transferencia"
+        />
+        <FinanceCard
+          title="Compras"
+          amount="-€88"
+          subtitle="Compras recientes"
+        />
+      </div>
     </div>
   );
 };
