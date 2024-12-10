@@ -27,10 +27,10 @@ export const routes = createBrowserRouter([
         index: true,
         element: (
           <ProtectedRoute>
+            <Footer />
             <BankHome />
           </ProtectedRoute>
-        
-      ), 
+        ),
       },
       {
         path: "trade",
@@ -52,5 +52,4 @@ export const routes = createBrowserRouter([
       },
     ],
   },
-    ],
-);
+]);

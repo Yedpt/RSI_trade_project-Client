@@ -1,140 +1,75 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   HomeIcon,
   ChartBarIcon,
-  LogoutIcon,
-  UserIcon,
+  NewspaperIcon,
+  CreditCardIcon,
+  DocumentIcon,
 } from "@heroicons/react/outline";
-import Avatar from "@mui/material/Avatar";
-import { teal } from "@mui/material/colors";
 import SplashScreen from "../components/SplashScreen";
 
-import videoNavbar from "../assets/video/video-navbar.mp4";
-
 const NavBar = () => {
-  const [user, setUser] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
   const [isSplashVisible, setIsSplashVisible] = useState(false);
+  const [activePage, setActivePage] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const colors = {
+    activeGreen: "#8ee281",
+    inactiveGray: "#696F74",
+  };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-    
-      setUser(parsedUser);
+    const currentPath = location.pathname.split("/").pop();
+    setActivePage(currentPath === "homebank" ? "homebank" : currentPath);
+  }, [location]);
+
+  const handleNavigation = (targetPage) => {
+    if (targetPage === "trade") {
+      setIsSplashVisible(true);
+      setTimeout(() => {
+        setIsSplashVisible(false);
+        navigate(`/homebank/${targetPage}`);
+      }, 3000);
+    } else if (targetPage === "homebank") {
+      navigate("/homebank");
+    } else {
+      navigate(`/homebank/${targetPage}`);
     }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("authToken");
-    setUser(null);
-    navigate("/");
   };
 
-  const handleOpenRegisterModal = () => navigate("/signup");
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  const handleShowSplashAndNavigate = () => {
-    setIsSplashVisible(true);
-    setTimeout(() => {
-      setIsSplashVisible(false);
-      navigate("/homebank/trade");
-    }, 3000);
-  };
+  const NavButton = ({ page, icon: Icon, label }) => (
+    <button
+      className="flex flex-col items-center p-2 md:text-lg"
+      style={{
+        color:
+          page === "homebank"
+            ? activePage === "homebank"
+              ? colors.activeGreen
+              : colors.inactiveGray
+            : activePage === page
+            ? colors.activeGreen
+            : colors.inactiveGray,
+      }}
+      onClick={() => handleNavigation(page)}
+    >
+      <Icon className="w-6 h-6 md:w-8 md:h-8" />
+      <span className="text-xs md:text-sm">{label}</span>
+    </button>
+  );
 
   return (
     <nav className="relative w-full">
       {isSplashVisible && (
         <SplashScreen onClose={() => setIsSplashVisible(false)} />
       )}
-      <div
-        className={`${
-          user ? "bg-transparent" : "bg-green-600"
-        } text-white flex justify-between items-center p-4`}
-      >
-        {user ? (
-          <div className="absolute top-0 left-0 w-full h-full z-[-1]">
-            <video autoPlay loop muted className="w-full h-full object-cover">
-              <source src={videoNavbar} type="video/mp4" />
-            </video>
-          </div>
-        ) : null}
-        <h1 className="text-xl font-bold">Mi Banco</h1>
-
-        <button
-          className="md:hidden p-2"
-          onClick={toggleMenu}
-          aria-label="Toggle Menu"
-        >
-          <svg
-            className="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-
-        <div
-          className={`${
-            isOpen ? "block" : "hidden"
-          } md:flex flex-col md:flex-row items-center space-y-4 md:space-x-6 w-full md:w-auto md:space-y-0`}
-        >
-          <Link to="/homebank" className="hover:text-green-200 flex items-center">
-            <HomeIcon className="w-6 h-6" />
-          </Link>
-
-          {user ? (
-            <>
-              <button
-                onClick={handleShowSplashAndNavigate}
-                className="hover:text-green-200 flex items-center"
-              >
-                <ChartBarIcon className="w-6 h-6" />
-              </button>
-              <div className="flex items-center space-x-4">
-                <span>¡Hola, {user.name}!</span>
-                <Link to="profile"><Avatar sx={{ bgcolor: teal[500] }}>
-                  {user.name ? user.name[0] : "U"}
-                </Avatar></Link>
-                <button
-                  onClick={handleLogout}
-                  className="hover:bg-green-500 p-2 rounded"
-                  title="Cerrar Sesión"
-                >
-                  <LogoutIcon className="w-6 h-6" />
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <button
-                onClick={handleOpenRegisterModal}
-                className="flex items-center space-x-2 text-green-100 hover:underline"
-              >
-                <UserIcon className="w-5 h-5" />
-                <span>Hazte cliente</span>
-              </button>
-              <button
-                onClick={() => navigate("/login")}
-                className="bg-green-500 hover:bg-green-400 px-4 py-2 rounded"
-              >
-                Iniciar Sesión
-              </button>
-            </>
-          )}
-        </div>
+      <div className="flex justify-around items-center py-2 bg-[#16161E] shadow-md md:w-full rounded-t-15p">
+        <NavButton page="portfolio" icon={DocumentIcon} label="Portfolio" />
+        <NavButton page="trade" icon={ChartBarIcon} label="Trade" />
+        <NavButton page="homebank" icon={HomeIcon} label="Home" />
+        <NavButton page="news" icon={NewspaperIcon} label="News" />
+        <NavButton page="wallet" icon={CreditCardIcon} label="Wallet" />
       </div>
     </nav>
   );

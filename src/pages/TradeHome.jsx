@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const TradeHome = () => {
   return (
     <div>
-      Soy el home del trade app
+      <h1>Soy el home del trade app</h1>
     </div>
-  )
-}
+  );
+};
 
-export default TradeHome
+export default TradeHome;
