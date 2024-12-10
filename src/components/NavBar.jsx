@@ -64,7 +64,7 @@ const NavBar = () => {
       {isSplashVisible && (
         <SplashScreen onClose={() => setIsSplashVisible(false)} />
       )}
-      <div className="flex justify-around items-center py-2 bg-[#16161E] shadow-md md:w-full rounded-t-15p">
+      <div className="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 bg-[#16161E] shadow-md rounded-t-[15px] z-30">
         <NavButton page="portfolio" icon={DocumentIcon} label="Portfolio" />
         <NavButton page="trade" icon={ChartBarIcon} label="Trade" />
         <NavButton page="homebank" icon={HomeIcon} label="Home" />

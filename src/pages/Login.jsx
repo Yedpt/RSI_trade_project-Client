@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import { loginUser } from "../services/authService";
-
+import CookieConsent from "../components/CookieConsent";
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -136,6 +136,7 @@ const Login = () => {
           />
         </svg>
       </button>
+      <CookieConsent />
     </div>
   );
 };
