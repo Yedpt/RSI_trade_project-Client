@@ -5,6 +5,9 @@ import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Profile from "../pages/Profile";
+import Footer from "../components/Footer";
+import TradeHeader from "../components/TradeHeader";
+import Portfolio from "../pages/Portfolio";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -33,13 +36,24 @@ export const routes = createBrowserRouter([
         ),
       },
       {
+        path: "portfolio",
+        element: (
+          <ProtectedRoute>
+            <TradeHeader />
+            <Portfolio />
+          </ProtectedRoute>
+        ),
+        children: [],
+      },
+      {
         path: "trade",
         element: (
           <ProtectedRoute>
+            <TradeHeader />
             <TradeHome />
           </ProtectedRoute>
-        
-      ), 
+        ),
+        children: [],
       },
       {
         path: "profile",
@@ -47,8 +61,8 @@ export const routes = createBrowserRouter([
           <ProtectedRoute>
             <Profile />
           </ProtectedRoute>
-        
-      ), 
+        ),
+        children: [],
       },
     ],
   },
