@@ -8,14 +8,8 @@ import Profile from "../pages/Profile";
 import Footer from "../components/Footer";
 import TradeHeader from "../components/TradeHeader";
 import Portfolio from "../pages/Portfolio";
-
-// Protected Route Component
-const ProtectedRoute = ({ children }) => {
-  const user = localStorage.getItem("user");
-  const token = localStorage.getItem("authToken");
-
-  return user && token ? children : <Navigate to="/" replace />;
-};
+import { PrivateRoutes } from "../layout/PrivateRoutes";
+import LayoutTrade from "../layout/LayoutTrade";
 
 export const routes = createBrowserRouter([
   {
@@ -23,56 +17,40 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "homebank",
-    element: <LayoutBank />,
+    path: "auth",
+    element: <PrivateRoutes />,
     children: [
       {
-        index: true,
-        element: (
-            
-            <Footer />,
-            <BankHome />
-         
-        ),
-      },
-      {
-        path: "portfolio",
-        element: (
-          <ProtectedRoute>
-            <Footer />
-            <BankHome />
-          </ProtectedRoute>
-        ),
-        children: [],
-      },
-      {
-        path: "portfolio",
-        element: (
-          <ProtectedRoute>
-            <TradeHeader />
-            <Portfolio />
-          </ProtectedRoute>
-        ),
-        children: [],
+        path: "homebank",
+        element: <LayoutBank />,
+        children: [
+          {
+            index: true,
+            element: <BankHome />,
+          },
+        ],
       },
       {
         path: "trade",
-        element: (
-          <ProtectedRoute>
-            <TradeHeader />
-            <TradeHome />
-          </ProtectedRoute>
-        ),
-        children: [],
-      },
-      {
-        path: "profile",
-        element: (
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        ),
-        children: [],
+        element: <LayoutTrade />,
+        children: [
+          {
+            index: true,
+            element: <TradeHome />,
+          },
+          {
+            path: "portfolio",
+            element: <Portfolio />,
+
+            children: [],
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+
+            children: [],
+          },
+        ],
       },
     ],
   },

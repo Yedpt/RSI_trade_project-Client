@@ -22,7 +22,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const currentPath = location.pathname.split("/").pop();
-    setActivePage(currentPath === "homebank" ? "homebank" : currentPath);
+    setActivePage(currentPath === "auth" ? "auth" : currentPath);
   }, [location]);
 
   const handleNavigation = (targetPage) => {
@@ -30,12 +30,12 @@ const NavBar = () => {
       setIsSplashVisible(true);
       setTimeout(() => {
         setIsSplashVisible(false);
-        navigate(`/homebank/${targetPage}`);
+        navigate(`/auth/${targetPage}`);
       }, 3000);
-    } else if (targetPage === "homebank") {
-      navigate("/homebank");
+    } else if (targetPage === "auth") {
+      navigate("/auth");
     } else {
-      navigate(`/homebank/${targetPage}`);
+      navigate(`/auth/${targetPage}`);
     }
   };
 
@@ -44,8 +44,8 @@ const NavBar = () => {
       className="flex flex-col items-center p-2 md:text-lg"
       style={{
         color:
-          page === "homebank"
-            ? activePage === "homebank"
+          page === "auth"
+            ? activePage === "auth"
               ? colors.activeGreen
               : colors.inactiveGray
             : activePage === page
@@ -60,16 +60,16 @@ const NavBar = () => {
   );
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full">
+    <nav className="relative w-full">
       {isSplashVisible && (
         <SplashScreen onClose={() => setIsSplashVisible(false)} />
       )}
       <div className="fixed bottom-0 left-0 w-full flex justify-around items-center py-2 bg-[#16161E] shadow-md rounded-t-[15px] z-30">
-        <NavButton page="portfolio" icon={DocumentIcon} label="Portfolio" />
+        <NavButton page="trade/portfolio" icon={DocumentIcon} label="Portfolio" />
         <NavButton page="trade" icon={ChartBarIcon} label="Trade" />
         <NavButton page="homebank" icon={HomeIcon} label="Home" />
-        <NavButton page="news" icon={NewspaperIcon} label="News" />
-        <NavButton page="wallet" icon={CreditCardIcon} label="Wallet" />
+        <NavButton page="trade/news" icon={NewspaperIcon} label="News" />
+        <NavButton page="trade/wallet" icon={CreditCardIcon} label="Wallet" />
       </div>
     </nav>
   );

@@ -27,7 +27,7 @@ const Login = () => {
       if (result.success && result.userData.token) {
         const { token } = result.userData; // Extraer el token correctamente
         await login(token); // Actualizamos el contexto con el token
-        navigate("/homebank"); // Redirigimos
+        navigate("/auth/homebank"); // Redirigimos
       } else {
         setError(result.message || "Invalid credentials");
       }

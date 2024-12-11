@@ -11,7 +11,7 @@ const TradeHeader = () => {
   const navigate = useNavigate();
 
   const handleProfile = () => {
-    navigate("/homebank/profile");
+    navigate("profile");
   };
 
   return (
