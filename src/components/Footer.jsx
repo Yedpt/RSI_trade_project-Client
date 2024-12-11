@@ -7,6 +7,9 @@ import { useAuth } from "../context/AuthContext";
 const Footer = () => {
   const { isAuthenticated, userName, logout } = useAuth();
   const navigate = useNavigate();
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser).user || JSON.parse(storedUser) : null;
+
 
   const handleLogout = () => {
     logout();
@@ -18,7 +21,7 @@ const Footer = () => {
       <div className="flex items-center">
         <img src={LogoImage} alt="logo" className="w-10 h-10 mr-4" />
         {isAuthenticated ? (
-          <span className="text-zinc-400">¡Hola, {userName}!</span>
+          <span className="text-zinc-400">¡Hola, {user.name}!</span>
         ) : (
           <div>
             <button
