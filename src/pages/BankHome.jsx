@@ -23,6 +23,16 @@ const BankHome = () => {
           amount="-€88"
           subtitle="Compras recientes"
         />
+        <FinanceCard
+          title="Mercadona"
+          amount="-€98"
+          subtitle="Compras recientes"
+        />
+        <FinanceCard
+          title="Nomina"
+          amount="€1500"
+          subtitle="Ingreso de transferencia"
+        />
       </div>
     </div>
   );
