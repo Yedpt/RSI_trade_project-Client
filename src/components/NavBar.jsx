@@ -60,7 +60,7 @@ const NavBar = () => {
   );
 
   return (
-    <nav className="relative w-full">
+    <nav className="fixed bottom-0 left-0 w-full">
       {isSplashVisible && (
         <SplashScreen onClose={() => setIsSplashVisible(false)} />
       )}
