@@ -4,8 +4,10 @@ import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
-import OnboardingPage from "../pages/OnboardingPage";
-import RankingPage from "../pages/RankingPage";
+import Profile from "../pages/Profile";
+import Footer from "../components/Footer";
+import TradeHeader from "../components/TradeHeader";
+import Portfolio from "../pages/Portfolio";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -28,18 +30,39 @@ export const routes = createBrowserRouter([
         index: true,
         element: (
           <ProtectedRoute>
+            <Footer />
             <BankHome />
           </ProtectedRoute>
-      ), 
+        ),
+      },
+      {
+        path: "portfolio",
+        element: (
+          <ProtectedRoute>
+            <TradeHeader />
+            <Portfolio />
+          </ProtectedRoute>
+        ),
+        children: [],
       },
       {
         path: "trade",
         element: (
           <ProtectedRoute>
+            <TradeHeader />
             <TradeHome />
           </ProtectedRoute>
-        
-      ), 
+        ),
+        children: [],
+      },
+      {
+        path: "profile",
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
+        children: [],
       },
 
       {
@@ -61,5 +84,4 @@ export const routes = createBrowserRouter([
       
     ],
   },
- ],
-);
+]);
