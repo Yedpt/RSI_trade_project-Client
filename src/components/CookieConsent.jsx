@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaCookieBite } from "react-icons/fa";
+import { FaShieldAlt } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 
 const CookieConsent = () => {
@@ -26,7 +26,7 @@ const CookieConsent = () => {
       {!showPreferences ? (
         <>
           <div className="flex items-center space-x-4">
-            <FaCookieBite className="text-yellow-400 text-4xl" />
+            <FaShieldAlt className="text-yellow-400 text-4xl" />
             <p>
               Este sitio utiliza cookies para mejorar su experiencia. Al
               continuar navegando, aceptas nuestro uso de cookies.
@@ -41,7 +41,7 @@ const CookieConsent = () => {
             </button>
             <button
               onClick={() => setShowPreferences(true)}
-              className="bg-yellow-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-300 text-sm"
+              className="bg-gray-500 px-3 py-1 rounded-lg hover:bg-yellow-600 transition duration-300 text-sm"
             >
               Preferencias
             </button>
