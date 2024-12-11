@@ -1,6 +1,5 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
-import { deepPurple } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
 const TradeHeader = () => {
@@ -46,7 +45,7 @@ const TradeHeader = () => {
       {user && (
         <div className="flex items-center">
           <button onClick={handleProfile}>
-            <Avatar sx={{ bgcolor: deepPurple[800] }}>
+            <Avatar sx={{ bgcolor: "#1DB154" }}>
               {user.name ? user.name[0] : "U"}
             </Avatar>
           </button>
