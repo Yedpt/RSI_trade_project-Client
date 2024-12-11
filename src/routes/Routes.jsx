@@ -50,8 +50,16 @@ export const routes = createBrowserRouter([
           </ProtectedRoute>
       ), 
       },
+      {
+        path: "ranking",
+        element: (
+          <ProtectedRoute>
+            <RankingPage />
+          </ProtectedRoute>
+      ),
+      }
       
     ],
   },
-    ],
+ ],
 );

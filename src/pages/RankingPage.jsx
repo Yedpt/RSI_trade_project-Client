@@ -1,5 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import CieloAzul from '../assets/rankingImages/CieloAzul.png';
+import ElTigre89 from '../assets/rankingImages/ElTigre89.png';
+import FuegoBravo from '../assets/rankingImages/FuegoBravo.png';
+import LunaPinta from '../assets/rankingImages/LunaPinta.png';
+import SolRapido from '../assets/rankingImages/SolRapido.png';
+import ElCerdito from '../assets/rankingImages/ElCerdito.svg';
+import avatar from '../assets/rankingImages/avatar.svg';
 
 // Componente para el banner VIP
 const VIPBanner = () => (
@@ -10,14 +17,9 @@ const VIPBanner = () => (
         </div>
         <div className="flex items-center">
             <img 
-                src="/path-to-piggy-bank.svg" 
+                src={ElCerdito}
                 alt="VIP savings" 
                 className="w-12 h-12"
-            />
-            <img 
-                src="/path-to-coins.svg" 
-                alt="Coins" 
-                className="w-8 h-8 -ml-2"
             />
         </div>
     </div>
@@ -54,100 +56,112 @@ const RankingRow = ({ rank, user, amount, percentage, avatar }) => (
 
 const RankingPage = () => {
     const navigate = useNavigate();
+    
     const rankings = [
         {
             rank: 1,
             user: 'ElTigre89',
             amount: 200055.02,
             percentage: 3.99,
-            avatar: 'path-to-avatar1'
+            avatar: ElTigre89
         },
         {
             rank: 2,
             user: 'SolRapido',
             amount: 180055.45,
             percentage: 33.79,
-            avatar: 'path-to-avatar2'
+            avatar: SolRapido
         },
         {
             rank: 3,
             user: 'LunaPinta',
             amount: 90055.62,
             percentage: -6.56,
-            avatar: 'path-to-avatar3'
+            avatar: LunaPinta
         },
         {
             rank: 4,
             user: 'CieloAzul',
             amount: 88055.12,
             percentage: 3.99,
-            avatar: 'path-to-avatar4'
+            avatar: CieloAzul
         },
         {
             rank: 5,
             user: 'FuegoBravo',
             amount: 9095.27,
             percentage: 3.99,
-            avatar: 'path-to-avatar5'
+            avatar: FuegoBravo
         }
     ];
 
     return (
-        <div className="bg-[#161622] min-h-screen p-4">
-            {/* Header */}
-            <div className="flex items-center gap-4 mb-6">
-                <button 
-                    onClick={() => navigate(-1)}
-                    className="text-white hover:text-[#8FE282]"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <h1 className="text-white text-xl font-bold">Ranking de los ganadores</h1>
-            </div>
+        <div className="bg-[#161622] min-h-screen w-full max-w-md mx-auto">
+            {/* Header fijo en la parte superior */}
+            <div className="p-4">
+                <div className="flex items-center gap-4 mb-6">
+                    <button 
+                        onClick={() => navigate(-1)}
+                        className="text-white hover:text-[#8FE282]"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                        </svg>
+                    </button>
+                    <h1 className="text-white text-xl font-bold">Ranking de los ganadores</h1>
+                </div>
 
-            {/* Search bar */}
-            <div className="relative mb-6">
-                <input
-                    type="search"
-                    placeholder="Buscar"
-                    className="w-full bg-[#232331] text-white rounded-lg py-2 px-4 pl-10"
-                />
-                <svg 
-                    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4"
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
-                >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </div>
-
-            {/* VIP Banner */}
-            <VIPBanner />
-
-            {/* Rankings list */}
-            <div>
-                {rankings.map((item) => (
-                    <RankingRow 
-                        key={item.rank}
-                        {...item}
+                {/* Barra de búsqueda con avatar */}
+                <div className="flex items-center gap-3 mb-6">
+                    <img 
+                        src={avatar} 
+                        alt="User Avatar" 
+                        className="w-8 h-8 rounded-full"
                     />
-                ))}
+                    <div className="relative flex-1">
+                        <input
+                            type="search"
+                            placeholder="Buscar"
+                            className="w-full bg-[#232331] text-white rounded-lg py-2 px-4 pl-10"
+                        />
+                        <svg 
+                            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4"
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
             </div>
 
-            {/* Navigation bar */}
-            <nav className="fixed bottom-0 left-0 right-0 bg-[#161622] border-t border-[#232331] p-4">
-                <div className="flex justify-between max-w-md mx-auto">
-                    {['Portfolio', 'Invertir', 'Home', 'News', 'Wallet'].map((item, index) => (
+            {/* Contenedor principal centrado */}
+            <div className="px-4">
+                {/* VIP Banner */}
+                <VIPBanner />
+
+                {/* Lista de rankings */}
+                <div className="pb-24">
+                    {rankings.map((item) => (
+                        <RankingRow 
+                            key={item.rank}
+                            {...item}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            {/* Barra de navegación fija en la parte inferior */}
+            <nav className="fixed bottom-0 left-0 right-0 bg-[#161622] border-t border-[#232331]">
+                <div className="flex justify-between max-w-md mx-auto px-4 py-3">
+                    {['Portfolio', 'Invertir', 'Home', 'News', 'Wallet'].map((item) => (
                         <button
                             key={item}
                             className={`flex flex-col items-center ${
                                 item === 'News' ? 'text-[#8FE282]' : 'text-gray-400'
                             }`}
                         >
-                            {/* Aquí irían los iconos correspondientes */}
                             <span className="text-xs">{item}</span>
                         </button>
                     ))}
