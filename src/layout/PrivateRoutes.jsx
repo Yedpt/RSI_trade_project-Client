@@ -1,15 +1,13 @@
-import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext.jsx';
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.jsx";
 
 export const PrivateRoutes = () => {
-    const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
 
-    return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
-};
+  // Mientras se verifica el estado de autenticación, muestra un indicador de carga
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-
-export const PrivateAdminRoutes = () => {
-    const { isAuthenticated, isAdmin } = useAuth();
-
-    return isAuthenticated && isAdmin ? <Outlet /> : <Navigate to="/" replace />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/" replace />;
 };

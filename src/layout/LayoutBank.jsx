@@ -1,8 +1,6 @@
 // Layout.jsx
 import { Outlet, useNavigate } from "react-router-dom";
-// import { Footer } from "../components/Footer.jsx";
-import NavBar from "../components/Navbar.jsx";
-// import backgroundImage from "../assets/images/fondo_layout.webp";
+import NavBar from "../components/NavBar.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
@@ -49,7 +47,7 @@ export const LayoutBank = () => {
 	return (
 		<div>
 			<div>
-				<Outlet />
+				<Outlet/>
 			</div>
 			<NavBar />
 		</div>

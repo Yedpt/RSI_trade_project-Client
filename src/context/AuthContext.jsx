@@ -10,6 +10,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [userName, setUserName] = useState(null); // Estado para el nombre del usuario
   const [sessionExpired, setSessionExpired] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
     setIsAuthenticated(true);
     setSessionExpired(false);
-    decodeTokenAndSetUserId(token);
+    decodeTokenAndSetUserData(token); // Llamamos a la función que extrae los datos del token
   };
 
   const logout = (expired = false) => {
@@ -28,13 +29,15 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("tokenExpiration");
     setIsAuthenticated(false);
     setUserId(null);
+    setUserName(null); // Limpiamos también el nombre del usuario
     setSessionExpired(expired);
   };
 
-  const decodeTokenAndSetUserId = (token) => {
+  const decodeTokenAndSetUserData = (token) => {
     try {
       const decoded = jwtDecode(token);
-      setUserId(decoded.id); // Extraer y guardar solo el ID del usuario
+      setUserId(decoded.id); // Extraemos el ID del usuario
+      setUserName(decoded.name); // Extraemos el nombre del usuario
     } catch (error) {
       console.error("Error decoding token", error);
       logout();
@@ -55,8 +58,8 @@ export const AuthProvider = ({ children }) => {
 
     if (token) {
       checkTokenExpiration();
+      decodeTokenAndSetUserData(token); // Extraemos datos al montar el componente
       setIsAuthenticated(true);
-      decodeTokenAndSetUserId(token);
     } else {
       logout();
     }
@@ -69,6 +72,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         isAuthenticated,
         userId,
+        userName, // Incluimos el nombre del usuario en el contexto
         login,
         logout,
         checkTokenExpiration,

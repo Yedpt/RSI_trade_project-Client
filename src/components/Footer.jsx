@@ -1,28 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { LogoutIcon } from "@heroicons/react/outline";
 import LogoImage from "../assets/logo-splashScreen.webp";
+import { useAuth } from "../context/AuthContext";
 
 const Footer = () => {
-  const [user, setUser] = useState(null);
+  const { isAuthenticated, userName, logout } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      try {
-        const parsedUser = JSON.parse(storedUser);
-        setUser(parsedUser.user || parsedUser);
-      } catch (error) {
-        console.error("Error parsing user data:", error);
-      }
-    }
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("authToken");
-    setUser(null);
+    logout();
     navigate("/");
   };
 
@@ -30,8 +17,8 @@ const Footer = () => {
     <footer className="fixed top-0 w-full flex items-center justify-between p-4 bg-gray-800 z-50">
       <div className="flex items-center">
         <img src={LogoImage} alt="logo" className="w-10 h-10 mr-4" />
-        {user ? (
-          <span className="text-zinc-400">¡Hola, {user.name}!</span>
+        {isAuthenticated ? (
+          <span className="text-zinc-400">¡Hola, {userName}!</span>
         ) : (
           <div>
             <button
@@ -49,7 +36,7 @@ const Footer = () => {
           </div>
         )}
       </div>
-      {user && (
+      {isAuthenticated && (
         <div className="flex items-center">
           <LogoutIcon
             className="w-6 h-6 text-[#E1E1E1] cursor-pointer flex items-center space-x-1"
