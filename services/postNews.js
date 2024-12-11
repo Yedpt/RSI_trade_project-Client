@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:5000/api/news';
+const BASE_URL = 'http://localhost:5173/news';
 
+// Create a  news
 export const createNews = async (newsData) => {
   try {
     const response = await axios.post(BASE_URL, newsData);
@@ -11,6 +12,7 @@ export const createNews = async (newsData) => {
   }
 };
 
+// Get all news
 export const getAllNews = async () => {
   try {
     const response = await axios.get(BASE_URL);
@@ -20,6 +22,7 @@ export const getAllNews = async () => {
   }
 };
 
+// Get news by ID
 export const getNewsById = async (id) => {
   try {
     const response = await axios.get(`${BASE_URL}/${id}`);
@@ -29,6 +32,7 @@ export const getNewsById = async (id) => {
   }
 };
 
+// Update news
 export const updateNews = async (id, updatedData) => {
   try {
     const response = await axios.put(`${BASE_URL}/${id}`, updatedData);
@@ -38,6 +42,7 @@ export const updateNews = async (id, updatedData) => {
   }
 };
 
+// Delete news
 export const deleteNews = async (id) => {
   try {
     const response = await axios.delete(`${BASE_URL}/${id}`);

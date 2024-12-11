@@ -4,6 +4,7 @@ import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import Card from "../components/Card";
 import News from "../pages/News";  // Add this import
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -19,8 +20,8 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/news", // Nueva ruta independiente
-    element: <News />,
+    path: "/card", // Nueva ruta independiente
+    element: <Card />,
   },
   {
     path: "homebank",
