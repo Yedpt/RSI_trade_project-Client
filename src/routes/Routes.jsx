@@ -8,6 +8,8 @@ import Profile from "../pages/Profile";
 import Footer from "../components/Footer";
 import TradeHeader from "../components/TradeHeader";
 import Portfolio from "../pages/Portfolio";
+import OnboardingPage from "../pages/OnboardingPage";
+import RankingPage from "../pages/RankingPage";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {

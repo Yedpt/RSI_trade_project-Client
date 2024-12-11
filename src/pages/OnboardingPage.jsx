@@ -41,7 +41,7 @@ const Card = ({
     handleVideoEnded 
 }) => {
     return (
-        <div className="w-[375px] h-[812px] bg-[#161622] rounded-[20px] flex flex-col items-center justify-center px-8">
+        <div className="w-full min-h-screen bg-[#161622] rounded-[20px] flex flex-col items-center justify-center px-8">
             {isVideoCard ? (
                 <video
                     ref={videoRef}
@@ -123,7 +123,7 @@ const AvatarCard = ({ userInfo, setUserInfo, onNext, onSkip }) => {
     };
 
     return (
-        <div className="w-[375px] h-[812px] bg-[#161622] rounded-[20px] flex flex-col items-center justify-between px-8 py-12">
+        <div className="w-full min-h-screen bg-[#161622] rounded-[20px] flex flex-col items-center justify-between px-8 py-12">
             <div className="flex-1 flex flex-col items-center justify-center w-full">
                 <div className="bg-[#7DA477] w-full max-w-[300px] p-8 rounded-[20px] flex flex-col items-center">
                     <div className="text-white rounded-full bg-[#161622] p-4 mb-4">
