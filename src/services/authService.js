@@ -3,6 +3,17 @@ import axios from "axios";
 const PORT = 3000;
 const URL = `http://localhost:${PORT}/api/users`;
 
+//Servicio para obtener los datos del ranking
+export const getRankings = async () => {
+    try {
+        const response = await axios.get('/api/rankings');
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching rankings:', error);
+        throw error;
+    }
+};
+
 // SERVICIO SIGNUP
 export const signUpNewUser = async (data) => {
   try {

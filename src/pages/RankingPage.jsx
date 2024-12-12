@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getRankings } from '../services/rankingService';
 import CieloAzul from '../assets/rankingImages/CieloAzul.png';
 import ElTigre89 from '../assets/rankingImages/ElTigre89.png';
 import FuegoBravo from '../assets/rankingImages/FuegoBravo.png';
@@ -8,24 +9,6 @@ import SolRapido from '../assets/rankingImages/SolRapido.png';
 import ElCerdito from '../assets/rankingImages/ElCerdito.svg';
 import avatar from '../assets/rankingImages/avatar.svg';
 
-// Componente para el banner VIP
-const VIPBanner = () => (
-    <div className="bg-[#8FE282] rounded-lg p-4 mb-6 flex justify-between items-center">
-        <div>
-            <h3 className="text-[#161622] font-bold text-lg mb-1">Gane hasta 5% APR</h3>
-            <p className="text-[#161622] text-sm">Participe de los retos y sume puntos en la area VIP</p>
-        </div>
-        <div className="flex items-center">
-            <img 
-                src={ElCerdito}
-                alt="VIP savings" 
-                className="w-12 h-12"
-            />
-        </div>
-    </div>
-);
-
-// Componente para cada fila del ranking
 const RankingRow = ({ rank, user, amount, percentage, avatar }) => (
     <div className="flex items-center justify-between mb-4 p-2 hover:bg-[#232331] rounded-lg transition-all">
         <div className="flex items-center gap-4">
@@ -54,46 +37,64 @@ const RankingRow = ({ rank, user, amount, percentage, avatar }) => (
     </div>
 );
 
+// Componente para el banner VIP
+const VIPBanner = () => (
+    <div className="bg-[#8FE282] rounded-lg p-4 mb-6 flex justify-between items-center">
+        <div>
+            <h3 className="text-[#161622] font-bold text-lg mb-1">Gane hasta 5% APR</h3>
+            <p className="text-[#161622] text-sm">Participe de los retos y sume puntos en la area VIP</p>
+        </div>
+        <div className="flex items-center">
+            <img 
+                src={ElCerdito}
+                alt="VIP savings" 
+                className="w-12 h-12"
+            />
+        </div>
+    </div>
+);
+
 const RankingPage = () => {
     const navigate = useNavigate();
-    
-    const rankings = [
-        {
-            rank: 1,
-            user: 'ElTigre89',
-            amount: 200055.02,
-            percentage: 3.99,
-            avatar: ElTigre89
-        },
-        {
-            rank: 2,
-            user: 'SolRapido',
-            amount: 180055.45,
-            percentage: 33.79,
-            avatar: SolRapido
-        },
-        {
-            rank: 3,
-            user: 'LunaPinta',
-            amount: 90055.62,
-            percentage: -6.56,
-            avatar: LunaPinta
-        },
-        {
-            rank: 4,
-            user: 'CieloAzul',
-            amount: 88055.12,
-            percentage: 3.99,
-            avatar: CieloAzul
-        },
-        {
-            rank: 5,
-            user: 'FuegoBravo',
-            amount: 9095.27,
-            percentage: 3.99,
-            avatar: FuegoBravo
-        }
-    ];
+    const [rankings, setRankings] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchRankings = async () => {
+            try {
+                setLoading(true);
+                const data = await getRankings();
+                // Transformar los datos si es necesario
+                const formattedRankings = data.map((item, index) => ({
+                    rank: index + 1,
+                    user: item.user_id, // Necesitarás obtener el nombre del usuario
+                    amount: item.mount,
+                    state: item.state,
+                    startDate: new Date(item.start_date),
+                    endDate: new Date(item.end_date),
+                    // Añadir avatar según el usuario
+                    avatar: getAvatarByUserId(item.user_id) // Función que deberás implementar
+                }));
+                setRankings(formattedRankings);
+            } catch (err) {
+                setError('Error al cargar el ranking');
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchRankings();
+    }, []);
+
+    if (loading) {
+        return <div className="text-white text-center">Cargando...</div>;
+    }
+
+    if (error) {
+        return <div className="text-red-500 text-center">{error}</div>;
+    }
 
     return (
         <div className="bg-[#161622] min-h-screen w-full max-w-md mx-auto">
