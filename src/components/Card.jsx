@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { use } from 'react';
+import coinBase  from '../assets/coinbase.png';
 
 const Card = () => {
   const Limit_Small = 50;
@@ -11,47 +11,52 @@ const Card = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 768) { // Móvil: limitar el texto
+      if (window.innerWidth <= 768) {
         if (title.length > Limit_Small) {
           setDisplayedTitle(title.substring(0, Limit_Small) + '...');
         } else {
           setDisplayedTitle(title);
         }
-      } else { // Escritorio: texto completo
+      } else {
         setDisplayedTitle(title);
       }
     };
 
-    handleResize(); // Llamar al cargar
-    window.addEventListener('resize', handleResize); // Escuchar redimensionamiento
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize); // Limpieza
+      window.removeEventListener('resize', handleResize);
     };
   }, [title]);
 
   const newPost = {
-    cardContainer: 'flex w-full h-40 bg-transparent rounded-lg shadow-md p-4',
-    url_image: 'flex-shrink-0  rounded-lg w-32 h-32 bg-[#f1faee]',
-    title: 'text-left ml-8  text-xl font-semibold text-gray-800 overflow-hidden text-wrap whitespace-normal',
-    user_id: 'text-left mt-2 ml-8 text-base font-normal text-gray-500',
+    cardContainer: 'flex w-full h-40 bg-transparent border-4  border-b-[#64748B] rounded-lg  p-4',
+    url_image: 'flex-shrink-0 rounded-lg w-32 h-28 bg-[#f1faee]',
+    title: 'text-left font-mainFont ml-8 text-xl font-semibold text-[#f8f9fd] overflow-hidden text-wrap whitespace-normal',
+    userDateContainer: 'flex items-center mt-1 ml-8 gap-2',
+    user_id: 'text-base text-[#64748B] font-mainFont font-normal ',
+    date_at: 'text-base font-normal text-[#64748B] font-mainFont ',
   };
   
   return (
     <>
       <div className={newPost.cardContainer}>
-        <div className={newPost.url_image}></div>
+        <div className={newPost.url_image}>
+          <img src={coinBase} alt="" />
+        </div>
         <div>
           <div className={newPost.title}>
             <h2>{displayedTitle}</h2>
           </div>
-          <div className={newPost.user_id}>
-            <h3>binance</h3>
+
+          <div className={newPost.userDateContainer}>
+            <h3 className={newPost.user_id}>binance</h3>
+            <span>•</span>
+            <h3 className={newPost.date_at}>hace 2 horas</h3>
           </div>
         </div>
       </div>
-  
-  
     </>
   );
 };

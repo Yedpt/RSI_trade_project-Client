@@ -11,6 +11,9 @@ export default {
           700: "#065f46",
         },
       },
+      fontFamily: {
+        mainFont: ["Manrope"],
+      },
       animation: {
         pulse: "pulse 2s ease-in-out infinite",
         scale: "scale 2s ease-in-out infinite",
