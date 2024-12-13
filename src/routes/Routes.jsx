@@ -6,6 +6,10 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Profile from "../pages/Profile";
 import Footer from "../components/Footer";
+import EducationContent from "../pages/EducationContent";
+import Investments from "../pages/Investments";
+import UnderConstruction from "../pages/UnderConstruction";
+import  EFT from "../pages/EFT";
 import TradeHeader from "../components/TradeHeader";
 import Portfolio from "../pages/Portfolio";
 import { PrivateRoutes } from "../layout/PrivateRoutes";
@@ -39,10 +43,25 @@ export const routes = createBrowserRouter([
             element: <TradeHome />,
           },
           {
+            path: "learn-trade",
+            element: <EducationContent />,
+          },
+          {
+            path: "investments",
+            element: <Investments />,
+          },
+          {
+            path: "underConstruction",
+            element: <UnderConstruction />,
+          },
+          {
+            path: "eft",
+            element: <EFT />,
+          },
+          {
             path: "portfolio",
             element: <Portfolio />,
 
-            children: [],
           },
           {
             path: "profile",
