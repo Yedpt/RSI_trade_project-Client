@@ -11,7 +11,7 @@ const Profile = () => {
   const user = storedUser ? JSON.parse(storedUser).user || JSON.parse(storedUser) : null;
 
   const handleReturn = () => {
-    navigate("/homebank/trade");
+    navigate(-1);
   };
 
   return (

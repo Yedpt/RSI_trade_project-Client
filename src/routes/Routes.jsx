@@ -6,8 +6,13 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Profile from "../pages/Profile";
 import Footer from "../components/Footer";
+import EducationContent from "../pages/EducationContent";
+import Investments from "../pages/Investments";
+import UnderConstruction from "../pages/UnderConstruction";
+import  EFT from "../pages/EFT";
 import TradeHeader from "../components/TradeHeader";
 import Portfolio from "../pages/Portfolio";
+<<<<<<< HEAD
 import OnboardingPage from "../pages/OnboardingPage";
 import RankingPage from "../pages/RankingPage";
 
@@ -18,6 +23,10 @@ const ProtectedRoute = ({ children }) => {
 
   return user && token ? children : <Navigate to="/" replace />;
 };
+=======
+import { PrivateRoutes } from "../layout/PrivateRoutes";
+import LayoutTrade from "../layout/LayoutTrade";
+>>>>>>> 7554b889fcbceb48233fdf7a0f2ae5019f798848
 
 export const routes = createBrowserRouter([
   {
@@ -25,46 +34,55 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "homebank",
-    element: <LayoutBank />,
+    path: "auth",
+    element: <PrivateRoutes />,
     children: [
       {
-        index: true,
-        element: (
-          <ProtectedRoute>
-            <Footer />
-            <BankHome />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "portfolio",
-        element: (
-          <ProtectedRoute>
-            <TradeHeader />
-            <Portfolio />
-          </ProtectedRoute>
-        ),
-        children: [],
+        path: "homebank",
+        element: <LayoutBank />,
+        children: [
+          {
+            index: true,
+            element: <BankHome />,
+          },
+        ],
       },
       {
         path: "trade",
-        element: (
-          <ProtectedRoute>
-            <TradeHeader />
-            <TradeHome />
-          </ProtectedRoute>
-        ),
-        children: [],
-      },
-      {
-        path: "profile",
-        element: (
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        ),
-        children: [],
+        element: <LayoutTrade />,
+        children: [
+          {
+            index: true,
+            element: <TradeHome />,
+          },
+          {
+            path: "learn-trade",
+            element: <EducationContent />,
+          },
+          {
+            path: "investments",
+            element: <Investments />,
+          },
+          {
+            path: "underConstruction",
+            element: <UnderConstruction />,
+          },
+          {
+            path: "eft",
+            element: <EFT />,
+          },
+          {
+            path: "portfolio",
+            element: <Portfolio />,
+
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+
+            children: [],
+          },
+        ],
       },
 
       {
