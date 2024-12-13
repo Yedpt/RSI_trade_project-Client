@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ChatBot from "../components/Chatbot";
 
 const TradeHome = () => {
   const [activeTab, setActiveTab] = useState("Acciones");
@@ -33,7 +34,7 @@ const TradeHome = () => {
   };
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen p-4">
+    <div className="bg-gray-900 text-white min-h-screen p-4 pb-28 relative">
       {/* Tabs */}
       <div className="flex justify-center space-x-4 mb-6">
         {["Acciones", "EFT"].map((tab) => (
@@ -149,6 +150,9 @@ const TradeHome = () => {
           ))}
         </div>
       </div>
+
+      {/* ChatBot */}
+      <ChatBot className="fixed bottom-24 right-4 z-50" />
     </div>
   );
 };

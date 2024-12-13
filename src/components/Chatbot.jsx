@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { FaCommentDots } from "react-icons/fa"; // Importar el icono de la librería React Icons
+import { FaCommentDots } from "react-icons/fa";
 
 const ChatBot = () => {
   const [question, setQuestion] = useState("");
-  const [messages, setMessages] = useState([]); // Historial de mensajes
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // Estado para controlar la visibilidad del chatbot
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = (e) => {
     setQuestion(e.target.value);
@@ -15,7 +15,6 @@ const ChatBot = () => {
     e.preventDefault();
     if (!question.trim()) return;
 
-    // Agregar la pregunta al historial
     setMessages((prevMessages) => [
       ...prevMessages,
       { role: "user", name: "Usuario", content: question },
@@ -33,7 +32,6 @@ const ChatBot = () => {
 
       const data = await res.json();
 
-      // Agregar la respuesta al historial
       if (res.ok) {
         setMessages((prevMessages) => [
           ...prevMessages,
@@ -52,17 +50,17 @@ const ChatBot = () => {
       ]);
     } finally {
       setLoading(false);
-      setQuestion(""); // Limpiar la entrada
+      setQuestion("");
     }
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-20 right-4 z-50">
       {/* Botón para abrir/cerrar el chatbot */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="w-14 h-14 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transition-transform"
+          className="w-14 h-14 bg-[#8FE282] rounded-full shadow-lg flex items-center justify-center text-black hover:scale-110 transition-transform"
         >
           <FaCommentDots size={24} />
         </button>
@@ -78,11 +76,11 @@ const ChatBot = () => {
           } bg-white shadow-2xl flex flex-col overflow-hidden border border-gray-200`}
         >
           {/* Encabezado */}
-          <div className="flex justify-between items-center bg-gradient-to-r from-indigo-500 to-purple-600 p-4">
-            <h2 className="text-lg font-semibold text-white">Asistente Chatbot</h2>
+          <div className="flex justify-between items-center bg-[#8FE282] p-4">
+            <h2 className="text-lg font-semibold text-black">Asistente Chatbot</h2>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-200"
+              className="text-black hover:text-gray-700"
             >
               ✖
             </button>
@@ -102,20 +100,18 @@ const ChatBot = () => {
                     msg.role === "user" ? "flex-row" : "flex-row-reverse"
                   }`}
                 >
-                  {/* Nombre */}
                   <span
                     className={`text-sm font-semibold ${
-                      msg.role === "user" ? "text-indigo-600" : "text-purple-600"
+                      msg.role === "user" ? "text-black" : "text-[#8FE282]"
                     }`}
                   >
                     {msg.name}
                   </span>
-                  {/* Mensaje */}
                   <div
                     className={`ml-2 p-3 rounded-lg max-w-xs text-sm shadow ${
                       msg.role === "user"
-                        ? "bg-indigo-100 text-indigo-800"
-                        : "bg-purple-100 text-purple-800"
+                        ? "bg-gray-200 text-black"
+                        : "bg-[#8FE282] text-black"
                     }`}
                   >
                     {msg.content}
@@ -133,12 +129,12 @@ const ChatBot = () => {
                 placeholder="Escribe tu pregunta..."
                 value={question}
                 onChange={handleChange}
-                className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                className="flex-1 p-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8FE282]"
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="p-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition disabled:bg-gray-400"
+                className="p-2 bg-[#8FE282] text-black rounded-lg hover:bg-[#76c871] transition disabled:bg-gray-400"
               >
                 {loading ? "..." : "Enviar"}
               </button>
