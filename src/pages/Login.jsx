@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
+import { useAuth } from "../context/AuthContext"; // Importamos el contexto de autenticación
 import { loginUser } from "../services/authService";
+import CookieConsent from "../components/CookieConsent";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth(); // Usamos el método login del contexto
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,18 +20,19 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-
+  
     try {
       const result = await loginUser(formData);
-
-      if (result.success) {
-        localStorage.setItem("user", JSON.stringify(result.userData));
-
-        navigate("/homebank");
+  
+      if (result.success && result.userData.token) {
+        const { token } = result.userData; // Extraer el token correctamente
+        await login(token); // Actualizamos el contexto con el token
+        navigate("/auth/homebank"); // Redirigimos
       } else {
         setError(result.message || "Invalid credentials");
       }
     } catch (err) {
+      console.error("Error during login:", err.message);
       setError("An error occurred while logging in.");
     }
   };
@@ -136,6 +140,7 @@ const Login = () => {
           />
         </svg>
       </button>
+      <CookieConsent />
     </div>
   );
 };

@@ -1,17 +1,16 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import NavBar from '../components/NavBar'
-import Footer from '../components/Footer'
+import React from "react";
+import { Outlet } from "react-router-dom";
+import NavBarBankHome from "../components/NavbarBankHome";
+import Footer from "../components/Footer";
 
 const LayoutBank = () => {
-    return (
-        <>
-        
-            <Outlet />
-            <NavBar />
-        </>
-    )
-}
+  return (
+    <>
+      <Footer />
+      <Outlet />
+      <NavBarBankHome />
+    </>
+  );
+};
 
-export default LayoutBank
- 
+export default LayoutBank;
