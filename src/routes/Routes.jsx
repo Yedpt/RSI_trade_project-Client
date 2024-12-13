@@ -5,7 +5,8 @@ import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Card from "../components/Card";
-import News from "../pages/News";  // Add this import
+import WinApr from "../components/WinApr";
+
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
   const user = localStorage.getItem("user");
@@ -20,8 +21,8 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/card", // Nueva ruta independiente
-    element: <Card />,
+    path: "win", // Nueva ruta independiente
+    element: <WinApr />,
   },
   {
     path: "homebank",
