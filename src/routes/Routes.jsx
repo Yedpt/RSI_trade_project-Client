@@ -6,6 +6,7 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Card from "../components/Card";
 import WinApr from "../components/WinApr";
+import News from "../pages/News";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -21,8 +22,8 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "win", // Nueva ruta independiente
-    element: <WinApr />,
+    path: "new", // Nueva ruta independiente
+    element: <News />,
   },
   {
     path: "homebank",
