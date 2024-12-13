@@ -1,154 +1,153 @@
 import React, { useState, useEffect } from "react";
-import ChatBot from "../components/Chatbot"; // Componente de chatbot
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const TradeHome = () => {
-  const [tab, setTab] = useState("acciones"); // Estado para alternar entre "Acciones" y "EFT"
-  const [educationContent, setEducationContent] = useState([]); // Contenido educativo
-  const [stocks, setStocks] = useState([]); // Acciones
-  const [selectedCategory, setSelectedCategory] = useState("US Acciones"); // Categoría seleccionada
+  const [activeTab, setActiveTab] = useState("Acciones");
+  const [activeCategory, setActiveCategory] = useState("US Acciones");
+  const [stocks, setStocks] = useState([]);
+  const navigate = useNavigate();
 
-  const apiUrl = import.meta.env.VITE_BACKEND_URL;
-  const apiKey = import.meta.env.VITE_ALPHA_VANTAGE_API_KEY;
-  
+  const fetchStockData = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/stocks");
+      setStocks(response.data);
+    } catch (error) {
+      console.error("Error fetching stock data:", error);
+    }
+  };
 
-  // Obtener datos de simulaciones y aprendizajes desde el backend
   useEffect(() => {
-    const fetchEducationContent = async () => {
-      try {
-        const response = await axios.get(`${apiUrl}/education_content`);
-        setEducationContent(response.data);
-      } catch (error) {
-        console.error("Error fetching education content:", error);
-      }
-    };
+    fetchStockData();
+  }, []);
 
-    fetchEducationContent();
-  }, [apiUrl]);
+  const getClearbitLogo = (symbol) =>
+    `https://logo.clearbit.com/${symbol.toLowerCase()}.com`;
 
-  // Obtener datos de acciones desde el backend
-  useEffect(() => {
-    const fetchStocks = async () => {
-      try {
-        const symbols = ["ABNB", "SPOT"]; // Empresas
-        const response = await axios.get(`${apiUrl}/stocks`, {
-          params: { symbols: symbols.join(",") },
-        });
-        setStocks(response.data || []);
-      } catch (error) {
-        console.error("Error fetching stock data:", error.message);
-      }
-    };
+  const handleEFTClick = () => {
+    navigate("/auth/trade/eft");
+  };
 
-    fetchStocks();
-  }, [apiUrl]);
+  const handleCardClick = (route) => {
+    navigate(route);
+  };
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen p-4 relative">
-      {/* Botones "Acciones" y "EFT" */}
-      <div className="flex justify-center gap-4 mb-6">
-        <button
-          className={`w-full py-2 text-sm rounded-lg ${
-            tab === "acciones" ? "bg-green-500" : "bg-gray-700"
-          }`}
-          onClick={() => setTab("acciones")}
-        >
-          Acciones
-        </button>
-        <button
-          className={`w-full py-2 text-sm rounded-lg ${
-            tab === "eft" ? "bg-green-500" : "bg-gray-700"
-          }`}
-          onClick={() => setTab("eft")}
-        >
-          EFT
-        </button>
+    <div className="bg-gray-900 text-white min-h-screen p-4">
+      {/* Tabs */}
+      <div className="flex justify-center space-x-4 mb-6">
+        {["Acciones", "EFT"].map((tab) => (
+          <button
+            key={tab}
+            className={`px-6 py-2 rounded-full ${
+              activeTab === tab
+                ? "bg-green-500 text-black"
+                : "bg-gray-800 text-gray-400"
+            }`}
+            onClick={() =>
+              tab === "EFT" ? handleEFTClick() : setActiveTab(tab)
+            }
+          >
+            {tab}
+          </button>
+        ))}
       </div>
 
-      {/* Contenido dinámico */}
-      {tab === "acciones" ? (
-        <>
-          {/* Simulaciones y Aprendizajes */}
-          <section className="mb-8">
-            <h2 className="text-lg font-semibold mb-4">Simulaciones y Aprendizajes</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {educationContent.map((content) => (
-                <div
-                  key={content.id}
-                  className="bg-gray-800 p-4 rounded-lg shadow-md"
-                >
-                  <h3 className="text-base font-bold">{content.title}</h3>
-                  <p className="text-sm text-gray-400">{content.description}</p>
-                </div>
-              ))}
+      {/* Simulations Section */}
+      <div>
+        <h2 className="text-xl font-semibold mb-4">Simulaciones y Aprendizajes</h2>
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          {[{ title: "Aprenda simulando", route: "/auth/trade/learn-trade" },
+            { title: "Practique aquí", route: "/auth/trade/learn-trade" }
+          ].map((card, index) => (
+            <div
+              key={index}
+              className="bg-gray-800 rounded-lg overflow-hidden cursor-pointer"
+              onClick={() => handleCardClick(card.route)}
+            >
+              <img
+                src={`https://via.placeholder.com/300x150?text=${card.title}`}
+                alt={card.title}
+                className="w-full"
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold">{card.title}</h3>
+              </div>
             </div>
-          </section>
+          ))}
+        </div>
 
-          {/* Botones de navegación */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {["Consejos", "Tutoriales", "Retos", "Vip", "Consultas", "Otros"].map((label) => (
+        {/* Buttons */}
+        <div className="flex justify-center flex-wrap gap-2 mb-8">
+          {["Consejos", "Tutoriales", "Retos", "VIP", "Consultas", "Otros"].map(
+            (btn, index) => (
               <button
-                key={label}
-                className="px-4 py-2 text-sm bg-gray-700 rounded-lg hover:bg-gray-600"
+                key={index}
+                className="bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-green-500 hover:text-black"
+                onClick={() => navigate("/auth/trade/underConstruction")}
               >
-                {label}
+                {btn}
               </button>
-            ))}
-          </div>
+            )
+          )}
+        </div>
+      </div>
 
-          {/* Acciones */}
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-4">Acciones</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {stocks.map((stock) => (
-                <div
-                  key={stock.symbol}
-                  className="bg-gray-800 p-4 rounded-lg shadow-md flex items-center gap-4"
+      {/* Actions Section */}
+      <div>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-semibold">Acciones</h2>
+          <button className="text-green-500">Ver todos</button>
+        </div>
+
+        {/* Categories */}
+        <div className="flex space-x-2 mb-4 overflow-x-auto">
+          {["Oro", "Crypto", "US Acciones", "NFTs"].map((category) => (
+            <button
+              key={category}
+              className={`px-4 py-2 whitespace-nowrap rounded-full ${
+                activeCategory === category
+                  ? "bg-green-500"
+                  : "bg-gray-800 text-gray-400"
+              }`}
+              onClick={() => setActiveCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Stock Cards */}
+        <div className="flex space-x-4 overflow-x-auto pb-4">
+          {stocks.map((stock, index) => (
+            <div
+              key={index}
+              className="bg-gray-800 w-64 p-4 rounded-lg flex-shrink-0 cursor-pointer"
+              onClick={() => handleCardClick("/auth/trade/investments")}
+            >
+              <img
+                src={getClearbitLogo(stock.symbol)}
+                alt={stock.name}
+                className="w-12 h-12 rounded-full mb-2"
+              />
+              <div>
+                <h3 className="text-lg font-semibold">{stock.symbol.toUpperCase()}</h3>
+                <p className="text-gray-400 mb-4">{stock.name}</p>
+              </div>
+              <div className="bg-gray-900 p-2 rounded-lg">
+                <p className="text-lg font-semibold">€{stock.price.toFixed(2)}</p>
+                <p
+                  className={`text-sm ${
+                    stock.change > 0 ? "text-green-500" : "text-red-500"
+                  }`}
                 >
-                  <img
-                    src={`https://logo.clearbit.com/${stock.symbol.toLowerCase()}.com`}
-                    alt={stock.symbol}
-                    className="w-12 h-12 object-contain bg-white rounded"
-                    onError={(e) => (e.target.src = "/default-logo.png")} // Logo predeterminado
-                  />
-                  <div>
-                    <h3 className="text-base font-bold">{stock.symbol}</h3>
-                    <p className="text-sm text-gray-400">Precio: €{stock.price}</p>
-                    <p
-                      className={`text-sm ${
-                        stock.change > 0 ? "text-green-400" : "text-red-400"
-                      }`}
-                    >
-                      Cambio: {stock.change}%
-                    </p>
-                  </div>
-                </div>
-              ))}
+                  {stock.change > 0 ? "+" : ""}
+                  {stock.change.toFixed(2)}%
+                </p>
+              </div>
             </div>
-          </section>
-
-          {/* Botones debajo de la sección "Acciones" */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {["Oro", "Crypto", "US Acciones", "NFTs"].map((category) => (
-              <button
-                key={category}
-                className={`px-4 py-2 text-sm bg-gray-700 rounded-lg hover:bg-gray-600 ${
-                  selectedCategory === category ? "bg-green-500" : ""
-                }`}
-                onClick={() => setSelectedCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </>
-      ) : (
-        <div className="text-center text-gray-400">Próximamente contenido de EFT...</div>
-      )}
-
-      {/* Chatbot */}
-      <div className="fixed bottom-4 right-4">
-        <ChatBot />
+          ))}
+        </div>
       </div>
     </div>
   );
