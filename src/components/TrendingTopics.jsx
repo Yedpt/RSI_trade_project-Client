@@ -5,7 +5,7 @@ const TrendingTopics = ({ onSelect }) => {
   const topics = [
     {
       name: "Apple trade",
-      icon: <img src="/icons/apple.jpeg" alt="Apple" className="h-6 w-6" />,
+      icon: <img src="/icons/apple.png" alt="Apple" className="h-6 w-6" />,
     },
     {
       name: "Tesla trade",
