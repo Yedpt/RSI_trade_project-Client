@@ -17,7 +17,36 @@ const TradeHome = () => {
   const [activeTab, setActiveTab] = useState("Acciones");
   const [activeCategory, setActiveCategory] = useState("US Acciones");
   const [stocks, setStocks] = useState([]);
+  const [hasCompletedMiFID, setHasCompletedMiFID] = useState(false);
   const navigate = useNavigate();
+
+  // Función para obtener el userId del localStorage
+  const getUserId = () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      return user?.id || null; // Retorna el ID o null si no existe
+    } catch (error) {
+      console.error("Error parsing user data from localStorage:", error);
+      return null;
+    }
+  };
+
+  const fetchMiFIDStatus = async () => {
+    const userId = getUserId(); // Obtener el userId del localStorage
+    if (!userId) {
+      console.error("No se encontró el userId en el localStorage.");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/midfid/status?userId=${userId}`
+      );
+      setHasCompletedMiFID(response.data.hasCompletedMiFID);
+    } catch (error) {
+      console.error("Error verificando el estado del MiFID:", error);
+    }
+  };
 
   const fetchStockData = async () => {
     try {
@@ -29,6 +58,7 @@ const TradeHome = () => {
   };
 
   useEffect(() => {
+    fetchMiFIDStatus();
     fetchStockData();
   }, []);
 
