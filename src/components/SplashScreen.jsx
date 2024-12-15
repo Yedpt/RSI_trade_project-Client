@@ -11,7 +11,7 @@ const SplashScreen = ({ onClose }) => {
   }, [onClose]);
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-black flex justify-center items-center z-50">
+    <div className="fixed top-0 left-0 w-full h-full bg-[#16161E] flex justify-center items-center z-50">
       <div className="text-center text-white">
         <img src={womanImage} alt="Logo" className="w-32 h-32 mx-auto" />
         <h1 className="text-2xl font-bold text-green-500 mt-4">App Trade</h1>

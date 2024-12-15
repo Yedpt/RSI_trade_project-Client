@@ -7,14 +7,16 @@ import SignUp from "../pages/SignUp";
 import Card from "../components/Card";
 import WinApr from "../components/WinApr";
 import News from "../pages/News";
-
-// Protected Route Component
-const ProtectedRoute = ({ children }) => {
-  const user = localStorage.getItem("user");
-  const token = localStorage.getItem("authToken");
-
-  return user && token ? children : <Navigate to="/" replace />;
-};
+import Profile from "../pages/Profile";
+import Footer from "../components/Footer";
+import EducationContent from "../pages/EducationContent";
+import Investments from "../pages/Investments";
+import UnderConstruction from "../pages/UnderConstruction";
+import  EFT from "../pages/EFT";
+import TradeHeader from "../components/TradeHeader";
+import Portfolio from "../pages/Portfolio";
+import { PrivateRoutes } from "../layout/PrivateRoutes";
+import LayoutTrade from "../layout/LayoutTrade";
 
 export const routes = createBrowserRouter([
   {
@@ -43,8 +45,10 @@ export const routes = createBrowserRouter([
           <ProtectedRoute>
             <TradeHome />
           </ProtectedRoute>
-        ),
+        
+      ), 
       },
     ],
   },
-])
+    ],
+);

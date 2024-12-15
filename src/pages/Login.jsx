@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
+import { useAuth } from "../context/AuthContext"; // Importamos el contexto de autenticación
 import { loginUser } from "../services/authService";
-import { ChevronUpIcon } from "@heroicons/react/solid";
+import CookieConsent from "../components/CookieConsent";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth(); // Usamos el método login del contexto
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,27 +20,30 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-
+  
     try {
       const result = await loginUser(formData);
-      if (result.success) {
-        localStorage.setItem("user", JSON.stringify(result.userData.user));
-        navigate("/homebank");
+  
+      if (result.success && result.userData.token) {
+        const { token } = result.userData; // Extraer el token correctamente
+        await login(token); // Actualizamos el contexto con el token
+        navigate("/auth/homebank"); // Redirigimos
       } else {
-        setError(result.message);
+        setError(result.message || "Invalid credentials");
       }
     } catch (err) {
-      setError("Ocurrió un error al iniciar sesión.");
+      console.error("Error during login:", err.message);
+      setError("An error occurred while logging in.");
     }
   };
 
-  const handleBackButtonClick = () => navigate("/");
+  const togglePasswordVisibility = () => setShowPassword(!showPassword);
 
   return (
-    <div className="min-h-screen bg-green-50 flex flex-col items-center justify-center relative">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold text-green-700 text-center mb-6">
-          Iniciar Sesión
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#16161E]">
+      <div className="bg-[#16161E] p-8 rounded-lg shadow-md w-full max-w-md">
+        <h2 className="text-2xl font-bold text-[#E1E1E1] text-left mb-6">
+          Log in
         </h2>
 
         {error && (
@@ -49,9 +56,9 @@ const Login = () => {
           <div className="mb-4">
             <label
               htmlFor="email"
-              className="block text-green-700 font-medium mb-2"
+              className="block text-zinc-400 font-medium mb-2"
             >
-              Correo Electrónico
+              Email
             </label>
             <input
               type="email"
@@ -59,7 +66,7 @@ const Login = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
+              className="w-full px-3 py-2 border-b border-zinc-600 focus:outline-none focus:ring-0 focus:border-green-300 bg-[#16161E] text-[#E1E1E1]"
               required
             />
           </div>
@@ -67,46 +74,73 @@ const Login = () => {
           <div className="mb-4">
             <label
               htmlFor="password"
-              className="block text-green-700 font-medium mb-2"
+              className="block text-zinc-400 font-medium mb-2"
             >
-              Contraseña
+              Password
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-300"
-              required
-              autoComplete="current-password"
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full px-3 py-2 border-b border-zinc-600 focus:outline-none focus:ring-0 focus:border-green-300 bg-[#16161E] text-[#E1E1E1]"
+                required
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400"
+              >
+                {showPassword ? (
+                  <EyeOffIcon className="w-6 h-6" />
+                ) : (
+                  <EyeIcon className="w-6 h-6" />
+                )}
+              </button>
+            </div>
           </div>
 
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition"
+            className="w-full bg-green-300 text-[#16161E] py-2 rounded-xl hover:bg-green-700 transition"
           >
-            Iniciar Sesión
+            Enter
           </button>
         </form>
 
         <div className="text-center mt-4">
           <button
             onClick={() => navigate("/signup")}
-            className="text-green-600 hover:underline"
+            className="text-zinc-400 hover:underline"
           >
-            ¿No tienes cuenta? Regístrate
+            Don't have an account? Sign up
           </button>
         </div>
       </div>
 
       <button
-        onClick={handleBackButtonClick}
+        onClick={() => navigate("/")}
         className="absolute bottom-4 text-green-600 hover:text-green-800"
       >
-        <ChevronUpIcon className="w-6 h-6 transform -rotate-90" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 transform -rotate-90"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M15 19l-7-7 7-7"
+          />
+        </svg>
       </button>
+      <CookieConsent />
     </div>
   );
 };
