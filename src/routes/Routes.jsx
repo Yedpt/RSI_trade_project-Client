@@ -4,9 +4,6 @@ import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
-import Card from "../components/Card";
-import WinApr from "../components/WinApr";
-import News from "../pages/News";
 import Profile from "../pages/Profile";
 import Footer from "../components/Footer";
 import EducationContent from "../pages/EducationContent";
@@ -24,31 +21,56 @@ export const routes = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "new", // Nueva ruta independiente
-    element: <News />,
-  },
-  {
-    path: "homebank",
-    element: <LayoutBank />,
+    path: "auth",
+    element: <PrivateRoutes />,
     children: [
       {
-        index: true,
-        element: (
-          <ProtectedRoute>
-            <BankHome />
-          </ProtectedRoute>
-        ),
+        path: "homebank",
+        element: <LayoutBank />,
+        children: [
+          {
+            index: true,
+            element: <BankHome />,
+          },
+        ],
       },
       {
         path: "trade",
-        element: (
-          <ProtectedRoute>
-            <TradeHome />
-          </ProtectedRoute>
-        
-      ), 
+        element: <LayoutTrade />,
+        children: [
+          {
+            index: true,
+            element: <TradeHome />,
+          },
+          {
+            path: "learn-trade",
+            element: <EducationContent />,
+          },
+          {
+            path: "investments",
+            element: <Investments />,
+          },
+          {
+            path: "underConstruction",
+            element: <UnderConstruction />,
+          },
+          {
+            path: "eft",
+            element: <EFT />,
+          },
+          {
+            path: "portfolio",
+            element: <Portfolio />,
+
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+
+            children: [],
+          },
+        ],
       },
     ],
   },
-    ],
-);
+]);
