@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import EducationContent from "../pages/EducationContent";
 import Investments from "../pages/Investments";
 import UnderConstruction from "../pages/UnderConstruction";
+import Midfid from "../pages/MidFid";
 import  EFT from "../pages/EFT";
 import TradeHeader from "../components/TradeHeader";
 import Portfolio from "../pages/Portfolio";
@@ -49,6 +50,10 @@ export const routes = createBrowserRouter([
           {
             path: "investments",
             element: <Investments />,
+          },
+          {
+            path: "midfid",
+            element: <Midfid />,
           },
           {
             path: "underConstruction",
