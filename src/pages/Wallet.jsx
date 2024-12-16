@@ -153,7 +153,7 @@ const Wallet = () => {
   };
 
   return (
-    <div className="bg-gray-900 min-h-screen text-white p-6">
+    <div className="bg-gray-900 min-h-screen text-white p-6 pt-[80px]">
       <div className="bg-gray-800 rounded-lg p-4 mb-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">

@@ -14,7 +14,7 @@ const TradeHeader = () => {
   };
 
   return (
-    <div className="flex flex-row-reverse items-center justify-between p-4 bg-[#1e1e2d]">
+    <div className="fixed top-0 w-full flex flex-row-reverse items-center justify-between p-4 bg-[#1e1e2d] z-50">
       <div className="flex items-center">
         {user ? (
           <div className="relative w-full max-w-xs">

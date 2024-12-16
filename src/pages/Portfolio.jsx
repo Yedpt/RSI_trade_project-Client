@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const Portfolio = () => {
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 mt-20">
       <div className="bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 className="text-3xl font-bold mb-4">Resumen del Portafolio</h2>
         <div className="text-xl">
@@ -10,7 +10,8 @@ const Portfolio = () => {
             <span className="font-semibold">Total:</span> €258,105.00
           </div>
           <div className="text-green-500">
-            <span className="font-semibold">Ganancia:</span> +50.18% (€11,050.801)
+            <span className="font-semibold">Ganancia:</span> +50.18%
+            (€11,050.801)
           </div>
         </div>
       </div>
@@ -24,7 +25,10 @@ const Portfolio = () => {
               <span className="text-green-500"> (+9.54, +4.06%)</span>
             </li>
             <li className="mb-2">
-              <span className="font-semibold">USDJPY (Euro / U.S. Dollar):</span> 139.3550
+              <span className="font-semibold">
+                USDJPY (Euro / U.S. Dollar):
+              </span>{" "}
+              139.3550
               <span className="text-red-500"> (-0.80, -0.37%)</span>
             </li>
             <li className="mb-2">
