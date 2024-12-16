@@ -69,6 +69,10 @@ const TradeHome = () => {
     navigate("/auth/trade/eft");
   };
 
+  const handleCardEducationClick = () => {
+    navigate("/auth/trade/learn-trade");
+  };
+
   const handleCardClick = () => {
     if (!hasCompletedMiFID) {
       navigate("/auth/trade/midfid"); // Llevar al formulario de MiFID si no está completo
@@ -110,13 +114,15 @@ const TradeHome = () => {
       {/* Simulations Section */}
       <div>
         <h2 className="text-xl font-semibold mb-4">Simulaciones y Aprendizajes</h2>
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          {[{ title: "Aprenda simulando", route: "/auth/trade/learn-trade", image: aprendeSimulando },
-            { title: "Practique aquí", route: "/auth/trade/learn-trade", image: practiqueAqui }].map((card, index) => (
+                <div className="grid grid-cols-2 gap-4 mb-6">
+          {[
+            { title: "Aprenda simulando", image: aprendeSimulando },
+            { title: "Practique aquí", image: practiqueAqui },
+          ].map((card, index) => (
             <div
               key={index}
               className="bg-gray-800 rounded-lg overflow-hidden cursor-pointer"
-              onClick={() => handleCardClick(card.route)}
+              onClick={handleCardEducationClick} // Usar la nueva función aquí
             >
               <img
                 src={card.image}

@@ -7,7 +7,7 @@ import SignUp from "../pages/SignUp";
 import Profile from "../pages/Profile";
 import Footer from "../components/Footer";
 import EducationContent from "../pages/EducationContent";
-import Investments from "../pages/Investments";
+import Investments from "../pages/investments";
 import UnderConstruction from "../pages/UnderConstruction";
 import Midfid from "../pages/MidFid";
 import  EFT from "../pages/EFT";
