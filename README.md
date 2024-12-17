@@ -13,13 +13,16 @@
 
 ## Estructura del proyecto
 
+<img src="https://github.com/user-attachments/assets/98fff591-45a0-4e1f-aded-b141f9974e0a" alt="Flow" width="500px" />
+
+
 📁 Trade Bank
 
 │
 
 │
 ├── 📁 src/                      
-│   ├── 📁 assets/  
+│   ├── 📁 assets/          
 
 │   ├── 📁 components/      
 
@@ -56,3 +59,21 @@
 └── 📄 README.md    
 
 └── 📄 .gitignore               
+
+## Roles del equipo
+
+- **Scrum Master** | Yeder Pimentel [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Yedpt) 		[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yeder-pimentel/) 
+
+
+- **Desarrollador** | Dario Pacheco [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Dario3111)		[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dario3pacheco/) 
+
+
+- **Desarrollador** | Emmanuel Martinez [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Rada749)		[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/emmanuelmartinezsalazar/)
+
+- **Desarrollador** | Oury Diallo  [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Diallo2024)		[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/diallo-consulting/)
+
+
+- **Desarrollador** | Enmauel Feliciano  [![GitHub](https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/EnmanuelFL)		[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/enmanuelfeliciano/)
+ 
+
+
