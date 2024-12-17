@@ -10,6 +10,7 @@ export default {
           600: "#047857",
           700: "#065f46",
         },
+        darkBackground: '#1E1E2D',
       },
       animation: {
         pulse: "pulse 2s ease-in-out infinite",
