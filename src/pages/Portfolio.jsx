@@ -1,7 +1,10 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Portfolio = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="container mx-auto p-6 mt-16 bg-darkBackground min-h-screen">
       <div className="p-4">
