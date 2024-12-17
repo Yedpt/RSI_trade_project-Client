@@ -30,7 +30,7 @@ const NewsPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-[rgb(22,22,34)] text-white mb-32">
+    <div className="container mx-auto min-h-screen p-4 bg-[rgb(22,22,34)] text-white mb-32">
       <h1 className="text-2xl font-bold mb-4">Noticias de Comercio</h1>
       <SearchNews onSearch={fetchNews} />
       <TrendingTopics onSelect={fetchNews} />
@@ -38,18 +38,19 @@ const NewsPage = () => {
       {showArticles && (
         <button
           onClick={toggleArticlesVisibility}
-          className="px-4 py-2 bg-[rgb(119,217,144)] text-[#000000] rounded-lg hover:bg-[rgb(119,217,144)] transition mb-4"
+          className="px-4 py-2 bg-[rgb(119,217,144)] ml-2 text-[#000000] rounded-lg hover:bg-[rgb(119,217,144)] transition mb-4"
         >
           <FaTimes className="inline-block" />
         </button>
       )}
 
       {showArticles && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+        <div className="flex justify-center">
+        <div className="grid grid-cols-1 lg:w-full w-96 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-4">
           {articles.map((article, index) => (
             <div
               key={index}
-              className="p-4 border border-[#71717a] rounded-lg bg-[#787880]"
+              className="p-4 border-2 border-[#71717a] rounded-lg bg-transparent"
             >
               <img
                 src={article.urlToImage}
@@ -68,6 +69,7 @@ const NewsPage = () => {
               </a>
             </div>
           ))}
+        </div>
         </div>
       )}
     </div>

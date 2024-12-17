@@ -12,6 +12,9 @@ export default {
         },
         darkBackground: '#1E1E2D',
       },
+      fontFamily: {
+        mainFont: ["Manrope"],
+      },
       animation: {
         pulse: "pulse 2s ease-in-out infinite",
         scale: "scale 2s ease-in-out infinite",

@@ -1,9 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NewsDetail from './components/NewsDetail';
 
-import React from "react";
-
-const App = () => {
-  return <div></div>;
-};
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<YourHomeComponent />} />
+        <Route path="/detail/:id" element={<NewsDetail />} />
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;
