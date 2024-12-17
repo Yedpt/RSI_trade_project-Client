@@ -18,12 +18,12 @@ const TrendingTopics = ({ onSelect }) => {
   ];
 
   return (
-    <div className="flex gap-4 flex-wrap my-6 bg-[rgb(22,22,34)] p-4 rounded-lg">
+    <div className="flex gap-4 flex-wrap  my-6 bg-[rgb(22,22,34)] p-4 rounded-lg">
       {topics.map((topic, index) => (
         <button
           key={index}
           onClick={() => onSelect(topic.name)}
-          className="flex items-center gap-2 px-4 py-3 bg-[#787880] text-white rounded-lg hover:bg-[rgb(119,217,144)] transition"
+          className="flex items-center  gap-2 px-4 py-3 bg-[#787880] text-white rounded-lg hover:bg-[rgb(119,217,144)] transition"
         >
           {topic.icon}
           {topic.name}

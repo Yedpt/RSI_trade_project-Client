@@ -31,7 +31,7 @@ const SearchNews = ({ onSearch }) => {
     >
       <input
         type="text"
-        placeholder="Buscar noticias de acciones..."
+        placeholder="Buscar articulos..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="w-full sm:w-3/4 p-3 border border-[#71717a] rounded-lg text-white bg-[#787880] focus:outline-none focus:ring-2 focus:ring-[rgb(119,217,144)] transition"
