@@ -30,16 +30,6 @@ const Portfolio = () => {
           </button>
           <h1 className="text-white text-xl font-bold">Portfolio</h1>
         </div>
-
-        <div className="flex items-center gap-3 mb-6">
-          <button
-            onClick={() => navigate(-1)}
-            className="absolute top-4 left-4 flex items-center bg-green-500 hover:bg-green-400 text-white rounded-full p-2 shadow-lg transition"
-            aria-label="Regresar"
-          >
-            <FaArrowLeft className="text-lg" />
-          </button>
-        </div>
       </div>
       <div className="bg-gray-800 text-gray-400 shadow-md rounded-lg p-6 mb-6">
         <h2 className="text-3xl font-bold mb-4">Resumen del Portafolio</h2>
