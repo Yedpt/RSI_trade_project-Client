@@ -30,7 +30,7 @@ const NewsPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-[rgb(22,22,34)] text-white mb-32">
+    <div className="container mx-auto min-h-screen p-4 bg-[rgb(22,22,34)] text-white mb-32">
       <h1 className="text-2xl font-bold mb-4">Noticias de Comercio</h1>
       <SearchNews onSearch={fetchNews} />
       <TrendingTopics onSelect={fetchNews} />
