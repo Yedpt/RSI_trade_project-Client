@@ -6,17 +6,16 @@ import React from 'react'
 
 const News = () => {
   return (
-    <>
-    <section className='bg-[#161622] flex h-full'>
+    <div>
+    <section className='bg-[#161622] flex min-h-screen'>
     <div>
       <div>
       <WinApr />
       </div>
       <NewsPage/>
-      
     </div>
     </section>
-    </>
+    </div>
   )
 }
 

@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { AiFillApple } from "react-icons/ai";
 import { SiTesla } from "react-icons/si";
+import { useNavigate } from "react-router-dom";
 
 const RechargeModal = ({
   isOpen,
@@ -113,6 +114,7 @@ const RechargeModal = ({
 };
 
 const Wallet = () => {
+  const navigate = useNavigate();
   const [cardBalance, setCardBalance] = useState(2500);
   const [mainWalletBalance, setMainWalletBalance] = useState(5000);
   const [isRechargeModalOpen, setIsRechargeModalOpen] = useState(false);
@@ -154,6 +156,32 @@ const Wallet = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen text-white p-6 pt-[80px]">
+      <div className="p-4">
+        <div className="flex items-center gap-4 mb-6">
+          <button
+            onClick={() => navigate(-1)}
+            className="text-white hover:text-[#8FE282]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <h1 className="text-white text-xl font-bold">
+            Wallet
+          </h1>
+        </div>
+      </div>
       <div className="bg-gray-800 rounded-lg p-4 mb-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center">

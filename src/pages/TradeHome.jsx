@@ -149,6 +149,17 @@ const TradeHome = () => {
               </button>
             )
           )}
+          {["Ranking"].map(
+            (btn, index) => (
+              <button
+                key={index}
+                className="bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-green-500 hover:text-black"
+                onClick={() => navigate("/auth/trade/ranking")}
+              >
+                {btn}
+              </button>
+            )
+          )}
         </div>
       </div>
 

@@ -30,7 +30,7 @@ const Investments = () => {
   };
 
   return (
-    <div className="min-h-screen bg-darkBackground text-white relative overflow-hidden">
+    <div className="min-h-screen bg-darkBackground text-white relative overflow-hidden mt-[4.5rem]">
       {/* Eliminar espacio blanco */}
       <style>
         {`body, html { margin: 0; padding: 0; box-sizing: border-box; overflow-x: hidden; }`}
@@ -38,7 +38,7 @@ const Investments = () => {
 
       {/* Botón de regreso */}
       <button
-        onClick={() => navigate("/auth/trade")}
+        onClick={() => navigate(-1)}
         className="absolute top-4 left-4 flex items-center bg-green-500 hover:bg-green-400 text-white rounded-full p-2 shadow-lg transition"
         aria-label="Regresar"
       >
