@@ -33,7 +33,7 @@ const WinApr = () => {
           </h1>
         </div>
       </div>
-      <div className="w-[360px] h-32 relative bg-[#a2e5b3] rounded-xl mt-4 ml-4 flex items-center overflow-hidden">
+      <div className="w-[360px] h-32 relative bg-[#a2e5b3] rounded-xl mt-4 ml-8 flex items-center overflow-hidden">
         <div className="ml-6">
           <div className="text-slate-800 text-xl font-bold font-mainFont leading-7">Gane hasta 5% APR</div>
           <div className="w-[175px] text-slate-700 text-normal font-normal font-mainFont leading-normal">Cómo obtener recompensas en la app.</div>
