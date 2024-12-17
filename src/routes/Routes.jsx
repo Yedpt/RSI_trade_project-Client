@@ -3,20 +3,20 @@ import LayoutBank from "../layout/LayoutBank";
 import BankHome from "../pages/BankHome";
 import TradeHome from "../pages/TradeHome";
 import Login from "../pages/Login";
-import SignUp from "../pages/SignUp";
 import Profile from "../pages/Profile";
-import Footer from "../components/Footer";
 import EducationContent from "../pages/EducationContent";
 import Investments from "../pages/investments";
 import UnderConstruction from "../pages/UnderConstruction";
 import Midfid from "../pages/MidFid";
-import  EFT from "../pages/EFT";
-import TradeHeader from "../components/TradeHeader";
+import EFT from "../pages/EFT";
+
 import Portfolio from "../pages/Portfolio";
 import { PrivateRoutes } from "../layout/PrivateRoutes";
 import LayoutTrade from "../layout/LayoutTrade";
 import Wallet from "../pages/Wallet";
 import OnboardingPage from "../pages/OnboardingPage";
+import News from "../pages/News";
+import RankingPage from "../pages/RankingPage";
 
 export const routes = createBrowserRouter([
   {
@@ -48,7 +48,11 @@ export const routes = createBrowserRouter([
           {
             path: "home",
             element: <TradeHome />, // Página principal de trade
-          },
+          },
+          {
+            path: "news",
+            element: <News />, 
+          },
           {
             path: "learn-trade",
             element: <EducationContent />,
@@ -56,6 +60,10 @@ export const routes = createBrowserRouter([
           {
             path: "investments",
             element: <Investments />,
+          },
+          {
+            path: "ranking",
+            element: <RankingPage />,
           },
           {
             path: "midfid",
