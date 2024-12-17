@@ -22,6 +22,7 @@ const Login = () => {
     setError("");
   
     try {
+      console.log("Form data before login:", formData); // Agregamos este console.log
       const result = await loginUser(formData);
   
       if (result.success && result.userData.token) {

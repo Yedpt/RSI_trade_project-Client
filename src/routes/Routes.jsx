@@ -14,6 +14,7 @@ import TradeHeader from "../components/TradeHeader";
 import Portfolio from "../pages/Portfolio";
 import { PrivateRoutes } from "../layout/PrivateRoutes";
 import LayoutTrade from "../layout/LayoutTrade";
+import OnboardingPage from "../pages/OnboardingPage";
 
 export const routes = createBrowserRouter([
   {
@@ -40,8 +41,12 @@ export const routes = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <TradeHome />,
+            element: <OnboardingPage />, // La ruta inicial para trade ahora es Onboarding
           },
+          {
+            path: "home",
+            element: <TradeHome />, // Página principal de trade
+          },
           {
             path: "learn-trade",
             element: <EducationContent />,
