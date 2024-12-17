@@ -15,6 +15,7 @@ import TradeHeader from "../components/TradeHeader";
 import Portfolio from "../pages/Portfolio";
 import { PrivateRoutes } from "../layout/PrivateRoutes";
 import LayoutTrade from "../layout/LayoutTrade";
+import Wallet from "../pages/Wallet";
 
 export const routes = createBrowserRouter([
   {
@@ -66,13 +67,16 @@ export const routes = createBrowserRouter([
           {
             path: "portfolio",
             element: <Portfolio />,
-
           },
           {
             path: "profile",
             element: <Profile />,
 
             children: [],
+          },
+          {
+            path: "wallet",
+            element: <Wallet />,
           },
         ],
       },

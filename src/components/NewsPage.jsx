@@ -14,9 +14,9 @@ const NewsPage = () => {
 
     try {
       const response = await axios.get(url);
-      // Asegurarse de que response.data.articles es un array
+
       const articles = Array.isArray(response.data.articles)
-        ? response.data.articles.slice(0, 5) // Limitar a 5 artículos
+        ? response.data.articles.slice(0, 5)
         : [];
       setArticles(articles);
       setShowArticles(true);
