@@ -1,6 +1,5 @@
 import WinApr from '../components/WinApr'
-import FilterNews from '../components/FilterNews'
-import Card from '../components/Card'
+import NewsPage from '../components/NewsPage'
 
 
 import React from 'react'
@@ -8,11 +7,15 @@ import React from 'react'
 const News = () => {
   return (
     <>
-    <div className='bg-[#161622]'>
+    <section className='bg-[#161622] flex h-full'>
+    <div>
+      <div>
       <WinApr />
-      <FilterNews />
-      <Card />
+      </div>
+      <NewsPage/>
+      
     </div>
+    </section>
     </>
   )
 }

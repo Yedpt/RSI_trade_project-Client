@@ -15,7 +15,7 @@ import Portfolio from "../pages/Portfolio";
 import { PrivateRoutes } from "../layout/PrivateRoutes";
 import LayoutTrade from "../layout/LayoutTrade";
 import News from "../pages/News";
-import NewsDetail from "../pages/NewsDetail";
+
 
 export const routes = createBrowserRouter([
   {
@@ -48,10 +48,7 @@ export const routes = createBrowserRouter([
             path: "news",
             element: <News />,
           },
-          {
-            path: "detail",
-            element: <NewsDetail />,
-          },
+         
           {
             path: "learn-trade",
             element: <EducationContent />,
