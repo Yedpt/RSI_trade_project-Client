@@ -14,7 +14,9 @@
 ## Estructura del proyecto
 
 📁 Trade Bank
-│     
+
+│
+
 │
 ├── 📁 src/                      
 │   ├── 📁 assets/  
@@ -35,7 +37,7 @@
 
 │   │			
  
-│   ├── index.css
+└──  📄  index.css
 
 └──  📄 App.tsx  
 
