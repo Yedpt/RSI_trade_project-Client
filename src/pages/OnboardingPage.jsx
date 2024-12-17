@@ -55,9 +55,9 @@ const Card = ({
                     <source src={video} type="video/mp4" />
                 </video>
             ) : (
-                image && <img src={image} alt={title} className="w-full h-[400px] object-cover rounded-t-[20px]" />
+                image && <img src={image} alt={title} className="w-full h-[300px] object-cover rounded-t-[20px]" />
             )}
-            <div className="flex flex-col items-center justify-center flex-1">
+            <div className="flex flex-col items-center justify-center pt-4">
                 <h2 className="text-white text-2xl font-bold mb-4">{title}</h2>
                 <p className="text-[#E0E0D1] text-lg mb-8">{description}</p>
                 <div className="flex flex-col w-full gap-4">
@@ -128,7 +128,7 @@ const AvatarCard = ({ userInfo, setUserInfo, onNext, onSkip }) => {
     };
 
     return (
-        <div className="w-full min-h-screen bg-[#161622] rounded-[20px] flex flex-col items-center justify-between px-8 py-12">
+        <div className="w-full min-h-screen bg-[#161622] rounded-[20px] flex flex-col items-center justify-between px-8 py-28">
             <div className="flex-1 flex flex-col items-center justify-center w-full">
                 <div className="bg-[#7DA477] w-full max-w-[300px] p-8 rounded-[20px] flex flex-col items-center">
                     <div className="text-white rounded-full bg-[#161622] p-4 mb-4">
@@ -198,8 +198,8 @@ const AvatarCard = ({ userInfo, setUserInfo, onNext, onSkip }) => {
                         ))}
                     </div>
 
-                    <p className="text-white text-lg text-center">¡Participe de los retos!</p>
-                    <p className="text-white text-sm text-center mt-2">Crea su perfil y participe de los retos!</p>
+                    <p className="text-white text-lg text-center">¡Participe en los retos!</p>
+                    <p className="text-white text-sm text-center mt-2">Crea su perfil y participe en los retos!</p>
                 </div>
             </div>
 
@@ -211,12 +211,6 @@ const AvatarCard = ({ userInfo, setUserInfo, onNext, onSkip }) => {
                     disabled={!userInfo.nickname || !userInfo.avatarUrl || errorMessage}
                 >
                     Empezar
-                </button>
-                <button
-                    className="text-white text-center w-full hover:text-[#6dcb5c]"
-                    onClick={onSkip}
-                >
-                    Saltar
                 </button>
             </div>
         </div>
@@ -302,14 +296,14 @@ const OnboardingPage = () => {
     return (
         <div className="flex justify-center items-center h-screen">
             {cards[currentIndex].isAvatarCard ? (
-                <AvatarCard
+                <AvatarCard 
                     userInfo={userInfo}
                     setUserInfo={setUserInfo}
                     onNext={handleNext}
                     onSkip={handleSkip}
                 />
             ) : (
-                <Card
+                <Card 
                     title={cards[currentIndex].title}
                     description={cards[currentIndex].description}
                     buttonText={cards[currentIndex].buttonText}
