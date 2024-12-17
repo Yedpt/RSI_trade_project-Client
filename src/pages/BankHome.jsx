@@ -2,7 +2,7 @@ import React from "react";
 import FinanceApp from "../components/FinanceApp";
 import PieChart from "../components/PieChart";
 import FinanceCard from "../components/FinanceCard";
-import NewsPage from "../components/NewsPage";
+
 
 const BankHome = () => {
   return (
@@ -36,7 +36,7 @@ const BankHome = () => {
           subtitle="Ingreso de transferencia"
         />
       </div>
-      <NewsPage />
+     
     </div>
   );
 };
