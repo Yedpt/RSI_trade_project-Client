@@ -19,7 +19,7 @@
 
 ## Estructura del proyecto
 
-<img src="https://github.com/user-attachments/assets/98fff591-45a0-4e1f-aded-b141f9974e0a" alt="Flow" width="500px" />
+<img src="https://github.com/user-attachments/assets/42890729-8d1e-41f6-812b-f22f718e24f8" alt="drawSQL" width="500px">
 
 
 📁 Trade Bank
