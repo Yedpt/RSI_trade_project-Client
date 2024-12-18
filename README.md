@@ -1,5 +1,5 @@
-# Trade Bank
-#### Trade Bank es  una plataforma innovadora que combina las mejores herramientas de inversión y bolsa de valores con técnicas de gamificación para hacer que aprender y ganar en los mercados financieros sea más emocionante y accesible.
+# Trade App
+#### Trade App es  una plataforma innovadora que combina las mejores herramientas de inversión y bolsa de valores con técnicas de gamificación para hacer que aprender y ganar en los mercados financieros sea más emocionante y accesible.
 
 #### Nuestro proposito es el acceso al mundo de las inversiones y convertir a nuestros usuarios en expertos financieros a través de una experiencia inmersiva y entretenida.
 
