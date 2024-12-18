@@ -107,6 +107,11 @@ VITE_BACKEND_VANTAGE_API_KEY=http:localhost:8000/api
 npm run dev
 ````
 
+## Enlances Relacionados↙️
+- [Postman Documentation](http://https://web.postman.co/workspace/1e3a550f-f89f-4c66-86f3-5606d34fafe7/documentation/37812533-41e9e251-84b1-4bbc-b8f2-e9dcca73951a  "Postman Documentation")🌐
+- [figma design](http://https://www.figma.com/design/36Pn3wV9gTgkrqburm6wF6/RSI?node-id=199-24493&p=f&t=UgkVKt8haZKnk3OV-0 "figma design")🌐
+- [Table scheme](http://https://drawsql.app/teams/f5-5/diagrams/rsi-trade "Table scheme")🌐
+
 ## Conclusión
 ¡Gracias por visitar nuestro proyecto! 🚀
 Si tienes alguna sugerencia, aportación o simplemente quieres ponerte en contacto, no dudes en hacerlo a través de nuestros perfiles de GitHub o LinkedIn. ¡Estamos emocionados por seguir mejorando y aprendiendo juntos!
