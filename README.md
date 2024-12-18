@@ -112,6 +112,7 @@ npm run dev
 - [figma design](http://https://www.figma.com/design/36Pn3wV9gTgkrqburm6wF6/RSI?node-id=199-24493&p=f&t=UgkVKt8haZKnk3OV-0 "figma design")🌐
 - [Table scheme](http://https://drawsql.app/teams/f5-5/diagrams/rsi-trade "Table scheme")🌐
 - [Project research](http:/https://www.notion.so/RSI-Proyecto-Plataforma-de-Gamificaci-n-Trading-Bolsa-1425abc34d928055a2d6e48fcd27ae94/ "Project research")🌐
+- [User Stories](http:/https://cdn.discordapp.com/attachments/1308348693706969093/1310925977542463618/Historias_de_usuarios.png?ex=676356b4&is=67620534&hm=f2de72b94b3915782274a0d0c777838cb12405d4b4771a42e783899ea3560cba&/ "User Stories")🌐
 
 ## Conclusión
 ¡Gracias por visitar nuestro proyecto! 🚀
