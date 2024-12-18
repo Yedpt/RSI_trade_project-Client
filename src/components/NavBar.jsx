@@ -70,8 +70,8 @@ const NavBar = () => {
           icon={DocumentIcon}
           label="Portfolio"
         />
-        <NavButton page="trade" icon={ChartBarIcon} label="Trade" />
-        <NavButton page="homebank" icon={HomeIcon} label="Home" />
+        <NavButton page="trade/investments" icon={ChartBarIcon} label="Trade" />
+        <NavButton page="trade/home" icon={HomeIcon} label="Home" />
         <NavButton page="trade/news" icon={NewspaperIcon} label="News" />
         <NavButton page="trade/wallet" icon={CreditCardIcon} label="Wallet" />
       </div>
