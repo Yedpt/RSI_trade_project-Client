@@ -111,6 +111,7 @@ npm run dev
 - [Postman Documentation](http://https://web.postman.co/workspace/1e3a550f-f89f-4c66-86f3-5606d34fafe7/documentation/37812533-41e9e251-84b1-4bbc-b8f2-e9dcca73951a  "Postman Documentation")🌐
 - [figma design](http://https://www.figma.com/design/36Pn3wV9gTgkrqburm6wF6/RSI?node-id=199-24493&p=f&t=UgkVKt8haZKnk3OV-0 "figma design")🌐
 - [Table scheme](http://https://drawsql.app/teams/f5-5/diagrams/rsi-trade "Table scheme")🌐
+- [Project research](http:/https://www.notion.so/RSI-Proyecto-Plataforma-de-Gamificaci-n-Trading-Bolsa-1425abc34d928055a2d6e48fcd27ae94/ "Project research")🌐
 
 ## Conclusión
 ¡Gracias por visitar nuestro proyecto! 🚀
