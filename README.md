@@ -5,7 +5,7 @@
 
 ## ⚠️ Backend  
 El backend de este proyecto está disponible en el siguiente repositorio:  
-🔗 [GitGame Server (Backend)](https://github.com/Yedpt/RSI_trade_project-Server)
+🔗 [RSI_trade_project-Server (Backend)](https://github.com/Yedpt/RSI_trade_project-Server)
 
 ## Tecnologías utilizadas 🔽
 
