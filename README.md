@@ -3,6 +3,10 @@
 
 #### Nuestro proposito es el acceso al mundo de las inversiones y convertir a nuestros usuarios en expertos financieros a través de una experiencia inmersiva y entretenida.
 
+## ⚠️ Backend  
+El backend de este proyecto está disponible en el siguiente repositorio:  
+🔗 [GitGame Server (Backend)](https://github.com/Yedpt/RSI_trade_project-Server)
+
 ## Tecnologías utilizadas 🔽
 
 - ![SuperTest](https://img.shields.io/badge/SuperTest-00BFFF?style=for-the-badge&logo=testing-library&logoColor=white)  - ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)		- ![React](https://img.shields.io/badge/React-blue?style=for-the-badge&logo=react&logoColor=white)		-![Recharts](https://img.shields.io/badge/Recharts-0088FF?style=for-the-badge&logo=recharts&logoColor=white)
